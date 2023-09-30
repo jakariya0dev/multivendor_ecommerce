@@ -29,17 +29,17 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <title>Rukada - Responsive Bootstrap 5 admin Template</title>
+    <title>Rukada - Responsive Bootstrap 5 vendor Template</title>
 </head>
 
 <body>
 <!--wrapper-->
 <div class="wrapper">
     <!--sidebar wrapper -->
-    @include('admin.layouts.sidebar')
+    @include('vendor.layouts.sidebar')
     <!--end sidebar wrapper -->
     <!--start header -->
-    @include('admin.layouts.header')
+    @include('vendor.layouts.header')
     <!--end header -->
     @yield('content')
     <!--start overlay-->
@@ -47,7 +47,7 @@
     <!--end overlay-->
     <!--Start Back To Top Button--> <a href="javaScript:" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
     <!--End Back To Top Button-->
-    @include('admin.layouts.footer')
+    @include('vendor.layouts.footer')
 
 </div>
 <!--end wrapper-->
