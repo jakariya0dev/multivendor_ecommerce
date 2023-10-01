@@ -40,8 +40,8 @@ class VendorController extends Controller
         if ($request->hasFile('pro_pic')){
             $file = $request->file('pro_pic');
             $file_name = time().$file->getClientOriginalName();
-            $file->move(public_path('images/vendor'), $file_name);
-            @unlink(public_path('images/vendor/'.$user->photo));
+            $file->move(public_path('imgs/vendor'), $file_name);
+            @unlink(public_path('imgs/vendor/'.$user->photo));
             $user->photo = $file_name;
         }
         $user->save();

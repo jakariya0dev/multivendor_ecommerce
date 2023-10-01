@@ -56,7 +56,7 @@
 .ff_fileupload_wrap table.ff_fileupload_uploads button.ff_fileupload_start_upload { background-image: url('fancy_okay.png'); }
 .ff_fileupload_wrap table.ff_fileupload_uploads button.ff_fileupload_remove_file { background-image: url('fancy_remove.png'); }
 
-/* Colored buttons based on file extension for non-images. */
+/* Colored buttons based on file extension for non-imgs. */
 .ff_fileupload_wrap table.ff_fileupload_uploads td.ff_fileupload_preview .ff_fileupload_preview_text_with_color { color: #FFFFFF; }
 .ff_fileupload_wrap table.ff_fileupload_uploads td.ff_fileupload_preview .ff_fileupload_preview_text_a { background-color: #F03C3C; }
 .ff_fileupload_wrap table.ff_fileupload_uploads td.ff_fileupload_preview .ff_fileupload_preview_text_b { background-color: #F05A3C; }

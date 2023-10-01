@@ -24,7 +24,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex flex-column align-items-center text-center">
-                                        <img src="{{ (empty($user->photo)) ? asset('images/no_image.jpg') : asset('images/vendor/'.$user->photo) }}" alt="vendor" class="rounded-circle p-1 bg-primary" width="110">
+                                        <img src="{{ (empty($user->photo)) ? asset('imgs/no_image.jpg') : asset('imgs/vendor/'.$user->photo) }}" alt="vendor" class="rounded-circle p-1 bg-primary" width="110">
                                         <div class="mt-3">
                                             <h4>{{ $user->name }}</h4>
                                             <p class="text-secondary mb-1">{{ $user->role }}</p>
@@ -101,7 +101,7 @@
                                                 <h6 class="mb-0"></h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <img id="image" class="mb-0" src="{{ (empty($user->photo)) ? asset('images/no_image.jpg') : asset('images/vendor/'.$user->photo) }}"
+                                                <img id="image" class="mb-0" src="{{ (empty($user->photo)) ? asset('imgs/no_image.jpg') : asset('imgs/vendor/'.$user->photo) }}"
                                                      style="height: 120px; width: 120px;"
                                                 />
                                             </div>

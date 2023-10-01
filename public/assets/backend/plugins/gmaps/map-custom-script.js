@@ -2,7 +2,7 @@
 var map;
 
 function initMap() {
-	// Basic map  
+	// Basic map
 	map = new google.maps.Map(document.getElementById('simple-map'), {
 		center: {
 			lat: -34.397,
@@ -24,7 +24,7 @@ function initMap() {
 		map: map,
 		title: 'Hello World!'
 	});
-	// overlays map	
+	// overlays map
 	var overlay;
 	USGSOverlay.prototype = new google.maps.OverlayView();
 	// Initialize the map and the custom overlay.
@@ -39,7 +39,7 @@ function initMap() {
 		});
 		var bounds = new google.maps.LatLngBounds(new google.maps.LatLng(62.281819, -150.287132), new google.maps.LatLng(62.400471, -150.005608));
 		// The photograph is courtesy of the U.S. Geological Survey.
-		var srcImage = 'https://developers.google.com/maps/documentation/' + 'javascript/examples/full/images/talkeetna.png';
+		var srcImage = 'https://developers.google.com/maps/documentation/' + 'javascript/examples/full/imgs/talkeetna.png';
 		// The custom USGSOverlay object contains the USGS image,
 		// the bounds of the image, and a reference to the map.
 		overlay = new USGSOverlay(bounds, srcImage, map);
@@ -102,7 +102,7 @@ function initMap() {
 		this.div_ = null;
 	};
 	google.maps.event.addDomListener(window, 'load', initMap);
-	// polygons 
+	// polygons
 	var map = new google.maps.Map(document.getElementById('polygons-map'), {
 		zoom: 5,
 		center: {
