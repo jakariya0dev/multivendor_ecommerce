@@ -2,12 +2,13 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('frontend.master');
-});
+    return view('frontend.index');
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -25,8 +26,8 @@ Route::middleware(['auth', 'role:admin'])->group(function (){
     Route::get('/admin/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');
     Route::get('/admin/logout', [AdminController::class, 'adminLogout'])->name('admin.logout');
     Route::get('/admin/profile', [AdminController::class, 'adminProfile'])->name('admin.profile');
-    Route::post('/admin/update', [AdminController::class, 'adminUpdate'])->name('admin.update');
-    Route::get('/admin/password/update', [AdminController::class, 'updateAdminPasswordViews'])->name('admin.password.update');
+    Route::post('/admin/update', [AdminController::class, 'adminProfileUpdate'])->name('admin.update');
+    Route::get('/admin/password/update', [AdminController::class, 'viewsForUpdateAdminPassword'])->name('admin.password.update');
     Route::post('/admin/password/update', [AdminController::class, 'adminPasswordUpdate'])->name('admin.password.update');
 });
 
@@ -43,7 +44,12 @@ Route::middleware(['auth', 'role:vendor'])->group(function (){
 
 Route::view('/admin/login', 'admin.admin_login')->name('admin.login');
 Route::view('/vendor/login', 'vendor.vendor_login')->name('vendor.login');
+Route::view('/user/login', 'frontend.user.user_login')->name('user.login');
+Route::view('/user/signup', 'frontend.user.user_signup')->name('user.signup');
+Route::post('/user/signup', [UserController::class, 'storeNewUser'])->name('user.signup');
 
+Route::get('/user/account', [UserController::class, 'userAccount'])->name('user.account');
+Route::get('/user/password/reset', [UserController::class, 'resetUserPassword'])->name('user.password.reset');
 
 
 require __DIR__.'/auth.php';

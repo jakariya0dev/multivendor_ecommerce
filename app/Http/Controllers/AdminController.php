@@ -31,7 +31,7 @@ class AdminController extends Controller
         $user = User::find(Auth::user()->id);
         return view('admin.admin_profile', compact('user'));
     }
-    public function adminUpdate(Request $request)
+    public function adminProfileUpdate(Request $request)
     {
         $user = User::find(Auth::user()->id);
         $user->name = $request->input('name');
@@ -52,12 +52,12 @@ class AdminController extends Controller
         ]);
     }
 
-    function updateAdminPasswordViews(){
+    function viewsForUpdateAdminPassword(){
         return view('admin.admin_password');
     }
+
     function  adminPasswordUpdate(Request $request)
     {
-
         if (Hash::check($request->input('old_password'), auth()->user()->password)){
             User::whereId(auth()->id())->update(['password' => Hash::make($request->input('new_password'))]);
             return back()->with("status", "Password successfully updated");

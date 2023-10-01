@@ -1,40 +1,45 @@
+@extends('frontend.master')
 
-<!--Hero slider-->
-@include('frontend.layouts.home.slider')
-<!--End hero slider-->
+@section('content')
 
-<!--Category slider-->
-@include('frontend.layouts.home.feature_categories')
-<!--End category slider-->
+    <!--Hero slider-->
+    @include('frontend.layouts.home.slider')
+    <!--End hero slider-->
 
-<!--Banners-->
-@include('frontend.layouts.home.banner')
-<!--End banners-->
+    <!--Category slider-->
+    @include('frontend.layouts.home.feature_categories')
+    <!--End category slider-->
 
-<!--Products Tabs-->
-@include('frontend.layouts.home.new_products')
-<!--Products Tabs-->
+    <!--Banners-->
+    @include('frontend.layouts.home.banner')
+    <!--End banners-->
 
-<!--Best Sales-->
-@include('frontend.layouts.home.feature_products')
-<!--End Best Sales-->
+    <!--Products Tabs-->
+    @include('frontend.layouts.home.new_products')
+    <!--Products Tabs-->
 
-<!-- TV Category -->
-@include('frontend.layouts.home.category_one')
-<!--End TV Category -->
+    <!--Best Sales-->
+    @include('frontend.layouts.home.feature_products')
+    <!--End Best Sales-->
 
-<!-- T-shirt Category -->
-@include('frontend.layouts.home.category_two')
-<!--End T-shirt Category -->
+    <!-- TV Category -->
+    @include('frontend.layouts.home.category_one')
+    <!--End TV Category -->
 
-<!-- Computer Category -->
-@include('frontend.layouts.home.category_three')
-<!--End Computer Category -->
+    <!-- T-shirt Category -->
+    @include('frontend.layouts.home.category_two')
+    <!--End T-shirt Category -->
 
-<!--4 columns-->
-@include('frontend.layouts.home.hot_deals')
-<!--End 4 columns-->
+    <!-- Computer Category -->
+    @include('frontend.layouts.home.category_three')
+    <!--End Computer Category -->
 
-<!--Vendor List -->
-@include('frontend.layouts.home.vendor_list')
-<!--End Vendor List -->
+    <!--4 columns-->
+    @include('frontend.layouts.home.hot_deals')
+    <!--End 4 columns-->
+
+    <!--Vendor List -->
+    @include('frontend.layouts.home.vendor_list')
+    <!--End Vendor List -->
+
+@endsection
