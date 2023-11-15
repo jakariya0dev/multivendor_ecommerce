@@ -8,7 +8,7 @@
 
     <!--Category slider-->
     @include('frontend.layouts.home.feature_categories')
-    <!--End category slider-->
+    <!--End categories slider-->
 
     <!--Banners-->
     @include('frontend.layouts.home.banner')

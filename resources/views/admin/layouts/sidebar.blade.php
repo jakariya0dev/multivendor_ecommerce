@@ -63,7 +63,20 @@
             <ul>
                 <li> <a href="{{ route('brands.index') }}"><i class="bx bx-right-arrow-alt"></i>All Brands</a>
                 </li>
-                <li> <a href="{{ route('brands.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Brands</a>
+                <li> <a href="{{ route('brands.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Brand</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Categories</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('category.index') }}"><i class="bx bx-right-arrow-alt"></i>All Categories</a>
+                </li>
+                <li> <a href="{{ route('category.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Category</a>
                 </li>
             </ul>
         </li>

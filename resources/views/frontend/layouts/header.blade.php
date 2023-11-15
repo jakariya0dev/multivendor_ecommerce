@@ -204,36 +204,36 @@
                             <div class="d-flex categori-dropdown-inner">
                                 <ul>
                                     <li>
-                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/category-1.svg') }}" alt="" />Milks and Dairies</a>
+                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-1.svg') }}" alt="" />Milks and Dairies</a>
                                     </li>
                                     <li>
-                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/category-2.svg') }}" alt="" />Clothing & beauty</a>
+                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-2.svg') }}" alt="" />Clothing & beauty</a>
                                     </li>
                                     <li>
-                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/category-3.svg') }}" alt="" />Pet Foods & Toy</a>
+                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-3.svg') }}" alt="" />Pet Foods & Toy</a>
                                     </li>
                                     <li>
-                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/category-4.svg') }}" alt="" />Baking material</a>
+                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-4.svg') }}" alt="" />Baking material</a>
                                     </li>
                                     <li>
-                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/category-5.svg') }}" alt="" />Fresh Fruit</a>
+                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-5.svg') }}" alt="" />Fresh Fruit</a>
                                     </li>
                                 </ul>
                                 <ul class="end">
                                     <li>
-                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/category-6.svg') }}" alt="" />Wines & Drinks</a>
+                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-6.svg') }}" alt="" />Wines & Drinks</a>
                                     </li>
                                     <li>
-                                        <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/category-7.svg') }}" alt="" />Fresh Seafood</a>
+                                        <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-7.svg') }}" alt="" />Fresh Seafood</a>
                                     </li>
                                     <li>
-                                        <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/category-8.svg') }}" alt="" />Fast food</a>
+                                        <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-8.svg') }}" alt="" />Fast food</a>
                                     </li>
                                     <li>
-                                        <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/category-9.svg') }}" alt="" />Vegetables</a>
+                                        <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-9.svg') }}" alt="" />Vegetables</a>
                                     </li>
                                     <li>
-                                        <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/category-10.svg') }}" alt="" />Bread and Juice</a>
+                                        <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-10.svg') }}" alt="" />Bread and Juice</a>
                                     </li>
                                 </ul>
                             </div>
