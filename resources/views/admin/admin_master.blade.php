@@ -12,6 +12,7 @@
     <link href="{{ asset('assets/backend/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/backend/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/backend/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/backend/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
     <!-- loader-->
     <link href="{{ asset('assets/backend/css/pace.min.css') }}" rel="stylesheet" />
     <script src="{{ asset('assets/backend/js/pace.min.js') }}"></script>
@@ -28,7 +29,7 @@
     {{--    Toaster --}}
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <title>Rukada - Responsive Bootstrap 5 admin Template</title>
 </head>
 
@@ -45,7 +46,8 @@
     <!--start overlay-->
     <div class="overlay toggle-icon"></div>
     <!--end overlay-->
-    <!--Start Back To Top Button--> <a href="javaScript:" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+    <!--Start Back To Top Button-->
+    <a href="javaScript:" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
     <!--End Back To Top Button-->
     @include('admin.layouts.footer')
 
@@ -64,6 +66,14 @@
 <script src="{{ asset('assets/backend/plugins/sparkline-charts/jquery.sparkline.min.js') }}"></script>
 <script src="{{ asset('assets/backend/plugins/jquery-knob/excanvas.js') }}"></script>
 <script src="{{ asset('assets/backend/plugins/jquery-knob/jquery.knob.js') }}"></script>
+<script src="{{ asset('assets/backend/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/backend/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
+<script src="{{ asset('assets/backend/js/sweet-alert.js.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>
 <script>
     $(function() {
         $(".knob").knob();

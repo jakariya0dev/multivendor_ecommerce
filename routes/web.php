@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -29,6 +30,8 @@ Route::middleware(['auth', 'role:admin'])->group(function (){
     Route::post('/admin/update', [AdminController::class, 'adminProfileUpdate'])->name('admin.update');
     Route::get('/admin/password/update', [AdminController::class, 'viewsForUpdateAdminPassword'])->name('admin.password.update');
     Route::post('/admin/password/update', [AdminController::class, 'adminPasswordUpdate'])->name('admin.password.update');
+
+    Route::resource('brands', BrandController::class);
 });
 
 
