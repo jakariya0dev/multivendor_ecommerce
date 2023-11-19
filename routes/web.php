@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -34,6 +35,7 @@ Route::middleware(['auth', 'role:admin'])->group(function (){
 
     Route::resource('brands', BrandController::class);
     Route::resource('category', CategoryController::class);
+    Route::resource('subcategory', SubCategoryController::class);
 });
 
 

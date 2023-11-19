@@ -35,7 +35,7 @@ class CategoryController extends Controller
         $image_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
         Image::make($image)->resize(300, 300)->save('upload/categories/'.$image_name);
 
-        category::insert([
+        Category::insert([
             'category_name' => $request->category_name,
             'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
             'category_image' => 'upload/categories/'.$image_name,
