@@ -38,7 +38,7 @@
                                                 <h6 class="mb-0">Category Photo</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input name="category_image" id="category_image" type="file" class="form-control"/>
+                                                <input name="category_image" id="category_image" type="file" class="form-control" required/>
                                             </div>
                                         </div>
                                         <div class="row mb-3">

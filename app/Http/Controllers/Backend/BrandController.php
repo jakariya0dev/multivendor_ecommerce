@@ -45,7 +45,7 @@ class BrandController extends Controller
         $message = [
 
         ];
-        return redirect()->back()->with([
+        return redirect()->route('brands.index')->with([
             'message' => 'Brand Added Successfully',
             'alert-type' => 'success'
         ]);

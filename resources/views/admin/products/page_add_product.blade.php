@@ -56,12 +56,17 @@
 
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label">Main Thumbnail</label>
-                                        <input name="product_thumbnail" class="form-control" type="file" id="formFile">
+                                        <input name="product_thumbnail" class="form-control" type="file" id="formFile" onChange="mainThumbUrl(this)">
+
+                                        <img style="margin-top: 5px" src="" id="mainThumbImage"  alt=""/>
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="formFileMultiple" class="form-label">Multiple Image</label>
-                                        <input name="product_images[]" class="form-control" type="file" id="formFileMultiple" multiple="">
+                                        <label for="multiImg" class="form-label">Multiple Image</label>
+                                        <input name="product_images[]" class="form-control" type="file" id="multiImg" multiple="">
+
+                                        <div style="margin-top: 5px"  class="row" id="preview_img"></div>
+
                                     </div>
 
                                 </div>
@@ -88,19 +93,19 @@
                                         <div class="col-12">
                                             <label for="inputProductType" class="form-label">Product Brand</label>
                                             <select class="form-select" id="inputProductType">
-                                                <option></option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <option>Select Brand</option>
+                                                @foreach($brands as $brand)
+                                                    <option value="$brand->id">{{ $brand->brand_name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-12">
                                             <label for="inputVendor" class="form-label">Category</label>
                                             <select class="form-select" id="inputVendor">
-                                                <option></option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <option>Select Category</option>
+                                                @foreach($categories as $category)
+                                                    <option value="$category->id">{{ $category->category_name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-12">
@@ -115,10 +120,10 @@
                                         <div class="col-12">
                                             <label for="inputCollection" class="form-label">Vendor</label>
                                             <select class="form-select" id="inputCollection">
-                                                <option></option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <option>Select Vendor</option>
+                                                @foreach($vendors as $vendor)
+                                                    <option value="$vendor->id">{{ $vendor->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-md-6">
@@ -160,4 +165,47 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        function mainThumbUrl(input){
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e){
+                    $('#mainThumbImage').attr('src',e.target.result).width(80).height(80);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
+
+    <script>
+
+        $(document).ready(function(){
+            $('#multiImg').on('change', function(){ //on file input change
+                if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
+                {
+                    let data = $(this)[0].files; //this file data
+
+                    $.each(data, function(index, file){ //loop though each file
+                        if(/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)){ //check supported file type
+                            const fRead = new FileReader(); //new filereader
+                            fRead.onload = (function(file){ //trigger function on successful read
+                                return function(e) {
+                                    let img = $('<img/>').addClass('thumb').attr('src', e.target.result) .width(100)
+                                        .height(80); //create image element
+                                    $('#preview_img').append(img); //append image to output element
+                                };
+                            })(file);
+                            fRead.readAsDataURL(file); //URL representing the file's data.
+                        }
+                    });
+
+                }else{
+                    alert("Your browser doesn't support File API!"); //if File API is absent
+                }
+            });
+        });
+
+    </script>
 @endsection

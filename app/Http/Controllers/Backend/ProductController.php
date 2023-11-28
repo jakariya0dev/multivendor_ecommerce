@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -22,8 +25,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-
-        return view('admin.products.page_add_product');
+        $brands = Brand::latest()->get();
+        $categories = Category::latest()->get();
+        $vendors = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
+        return view('admin.products.page_add_product', compact('brands','categories', 'vendors'));
     }
 
     /**
