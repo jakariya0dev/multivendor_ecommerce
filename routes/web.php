@@ -36,6 +36,12 @@ Route::middleware(['auth', 'role:admin'])->group(function (){
     Route::resource('brands', BrandController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('subcategory', SubCategoryController::class);
+
+    Route::get('vendor/list/all',[VendorController::class, 'allVendors'])->name('vendor.all');
+    Route::get('vendor/details/{id}',[VendorController::class, 'detailsOfVendor'])->name('vendor.details');
+    Route::get('vendor/list/active',[VendorController::class, 'activeVendors'])->name('vendor.active');
+    Route::get('vendor/list/inactive',[VendorController::class, 'inactiveVendors'])->name('vendor.inactive');
+    Route::post('vendor/status/update/{id}',[VendorController::class, 'vendorStatusUpdate'])->name('vendor.status.update');
 });
 
 
@@ -46,11 +52,14 @@ Route::middleware(['auth', 'role:vendor'])->group(function (){
     Route::post('/vendor/update', [VendorController::class, 'vendorUpdate'])->name('vendor.update');
     Route::get('/vendor/password/update', [VendorController::class, 'updateVendorPasswordViews'])->name('vendor.password.update');
     Route::post('/vendor/password/update', [VendorController::class, 'vendorPasswordUpdate'])->name('vendor.password.update');
+
 });
 
+Route::view('/vendor/login', 'vendor.vendor_login')->name('vendor.login');
+Route::get('/vendor/register', [VendorController::class, 'vendorRegister'])->name('vendor.register');
+Route::post('/vendor/register', [VendorController::class, 'newVendorStore'])->name('vendor.register');
 
 Route::view('/admin/login', 'admin.admin_login')->name('admin.login');
-Route::view('/vendor/login', 'vendor.vendor_login')->name('vendor.login');
 Route::view('/user/login', 'frontend.user.user_login')->name('user.login');
 Route::view('/user/signup', 'frontend.user.user_signup')->name('user.signup');
 Route::post('/user/signup', [UserController::class, 'storeNewUser'])->name('user.signup');

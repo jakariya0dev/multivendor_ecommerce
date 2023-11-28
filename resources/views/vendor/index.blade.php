@@ -4,7 +4,12 @@
     <!--start page wrapper -->
     <div class="page-wrapper">
         <div class="page-content">
-
+            @if(Auth::user()->status == 'inactive')
+                <div class="alert alert-danger">
+                    <h1> Your account is <span style="color: red;">inactive</span></h1>
+                    <h5> Please wait admin will check and active your account</h5>
+                </div>
+            @endif
             <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
                 <div class="col">
                     <div class="card radius-10 bg-gradient-deepblue">

@@ -29,11 +29,7 @@ class UserController extends Controller
             'password' => Hash::make($request->input('password')),
         ]);
 
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect()->route('dashboard');
+        return redirect()->route('vendor.login');
     }
 
     function userAccount(){
