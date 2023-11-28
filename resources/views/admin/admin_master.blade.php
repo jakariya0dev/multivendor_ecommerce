@@ -13,6 +13,7 @@
     <link href="{{ asset('assets/backend/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/backend/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/backend/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/backend/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet" />
     <!-- loader-->
     <link href="{{ asset('assets/backend/css/pace.min.css') }}" rel="stylesheet" />
     <script src="{{ asset('assets/backend/js/pace.min.js') }}"></script>
@@ -30,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
     <title>Rukada - Responsive Bootstrap 5 admin Template</title>
 </head>
 
@@ -69,6 +71,7 @@
 <script src="{{ asset('assets/backend/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/backend/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
 <script src="{{ asset('assets/backend/js/sweet-alert.js.js') }}"></script>
+<script src="{{ asset('assets/backend/plugins/input-tags/js/tagsinput.js') }}"></script>
 <script>
     $(document).ready(function() {
         $('#example').DataTable();
@@ -105,5 +108,13 @@
     }
     @endif
 </script>
+
+<script>
+
+    tinymce.init({
+        selector: '#mytextarea'
+    });
+</script>
+
 </body>
 </html>
