@@ -37,6 +37,8 @@ Route::middleware(['auth', 'role:admin'])->group(function (){
     Route::resource('brands', BrandController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('subcategory', SubCategoryController::class);
+
+    Route::post('product/thumbnail/update', [ProductController::class, 'updateThumbnail'])->name('product.thumbnail.update');
     Route::resource('product', ProductController::class);
 
     Route::get('/subcategory/category/{id}', [SubCategoryController::class, 'subCategoriesByCategoryId']);

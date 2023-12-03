@@ -11,7 +11,7 @@
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="javascript:"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">All</li>
+                            <li class="breadcrumb-item active" aria-current="page">All <span class="badge rounded-pill bg-danger"> {{ count($products) }}</span></li>
                         </ol>
                     </nav>
                 </div>
@@ -57,7 +57,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('category.edit',$product->id) }}" class="btn btn-info"><i class="fa-solid fa-eye"></i></a>
-                                        <a href="{{ route('category.edit',$product->id) }}" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{ route('product.edit',$product->id) }}" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <a href="{{ route('category.destroy',$product->id) }}" class="btn btn-danger" id="delete" ><i class="fa-solid fa-trash-can"></i></a>
                                         @if($product->status == 0)
                                             <a href="{{ route('category.destroy',$product->id) }}" class="btn btn-info" id="delete" ><i class="fa-solid fa-thumbs-down"></i></a>
