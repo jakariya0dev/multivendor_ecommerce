@@ -39,6 +39,8 @@ Route::middleware(['auth', 'role:admin'])->group(function (){
     Route::resource('subcategory', SubCategoryController::class);
     Route::resource('product', ProductController::class);
 
+    Route::get('/subcategory/category/{id}', [SubCategoryController::class, 'subCategoriesByCategoryId']);
+
     Route::get('vendor/list/all',[VendorController::class, 'allVendors'])->name('vendor.all');
     Route::get('vendor/details/{id}',[VendorController::class, 'detailsOfVendor'])->name('vendor.details');
     Route::get('vendor/list/active',[VendorController::class, 'activeVendors'])->name('vendor.active');

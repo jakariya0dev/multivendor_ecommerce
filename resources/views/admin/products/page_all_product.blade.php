@@ -17,7 +17,7 @@
                 </div>
                 <div class="ms-auto">
                     <div class="btn-group">
-                        <a href="{{ route('category.create') }}" class="btn btn-primary">Add New</a>
+                        <a href="{{ route('product.create') }}" class="btn btn-primary">Add New</a>
                     </div>
                 </div>
             </div>
@@ -43,15 +43,27 @@
                             @foreach($products as $key => $product)
                                 <tr>
                                     <td> {{ $key+1 }} </td>
-                                    <td> <img src="{{ asset($item->product_thambnail) }}" style="width: 70px; height:40px;"  alt="Product Thumbnail">  </td>
+                                    <td> <img src="{{ asset($product->product_thumbnail) }}" style="width: 70px; height:40px;"  alt="Product Thumbnail">  </td>
                                     <td>{{ $product->product_name }}</td>
                                     <td>{{ $product->selling_price }}</td>
                                     <td>{{ $product->product_quantity }}</td>
                                     <td>{{ $product->discount_price }}</td>
-                                    <td>{{ $product->status }}</td>
                                     <td>
-                                        <a href="{{ route('edit.category',$item->id) }}" class="btn btn-info">Edit</a>
-                                        <a href="{{ route('delete.category',$item->id) }}" class="btn btn-danger" id="delete" >Delete</a>
+                                        @if($product->status == 0)
+                                            <span class="badge bg-danger">Inactive</span>
+                                        @elseif($product->status == 1)
+                                            <span class="badge bg-success">Active</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('category.edit',$product->id) }}" class="btn btn-info"><i class="fa-solid fa-eye"></i></a>
+                                        <a href="{{ route('category.edit',$product->id) }}" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{ route('category.destroy',$product->id) }}" class="btn btn-danger" id="delete" ><i class="fa-solid fa-trash-can"></i></a>
+                                        @if($product->status == 0)
+                                            <a href="{{ route('category.destroy',$product->id) }}" class="btn btn-info" id="delete" ><i class="fa-solid fa-thumbs-down"></i></a>
+                                        @elseif($product->status == 1)
+                                            <a href="{{ route('category.destroy',$product->id) }}" class="btn btn-info" id="delete" ><i class="fa-solid fa-thumbs-up"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

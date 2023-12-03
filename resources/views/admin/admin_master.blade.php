@@ -17,6 +17,8 @@
     <!-- loader-->
     <link href="{{ asset('assets/backend/css/pace.min.css') }}" rel="stylesheet" />
     <script src="{{ asset('assets/backend/js/pace.min.js') }}"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Bootstrap CSS -->
     <link href="{{ asset('assets/backend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/backend/css/app.css') }}" rel="stylesheet">
@@ -28,6 +30,7 @@
     {{--    JQuery--}}
     <script src="{{ asset('assets/backend/js/jquery.min.js') }}"></script>
     {{--    Toaster --}}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

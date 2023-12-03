@@ -88,4 +88,8 @@ class SubCategoryController extends Controller
             'alert-type' => 'success'
         ]);
     }
+
+    public function subCategoriesByCategoryId($id){
+        return SubCategory::where('category_id', $id)->latest()->get();
+    }
 }
