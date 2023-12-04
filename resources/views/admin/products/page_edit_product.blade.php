@@ -158,7 +158,7 @@
 
                         <div class="form-body mt-4">
                             <div class="row">
-                                <form id="myForm" method="post" action="{{ route('product.thumbnail.update') }}" enctype="multipart/form-data" >
+                                <form id="myForm" method="post" action="{{ route('update.product.thumbnail') }}" enctype="multipart/form-data" >
                                     @csrf
                                     <div class="col-lg-6">
                                     <div class="p-4">
@@ -194,34 +194,64 @@
                     <h5 class="card-title">Update Multi Images</h5>
                     <hr/>
 
-                        <div class="form-body mt-4">
-                            <div class="row">
+                    <table class="table mb-0 table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">#Sl</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Change Image </th>
+                            <th scope="col">Delete </th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                                <form id="myForm" method="post" action="{{ route('product.store') }}" enctype="multipart/form-data" >
-                                    @csrf
-                                    <div class="col-lg-6">
-                                    <div class="p-4">
+                            @foreach($productImages as $key => $image)
+                                    <tr>
+                                        <form method="post" action="{{ route('update.product.image', $image->id) }}" enctype="multipart/form-data" >
+                                            @csrf
+                                            <input type="hidden" name="old_product_image" value="{{ $image->photo_name }}">
+                                            <th scope="row">{{ $key+1 }}</th>
+                                            <td> <img src="{{ asset($image->photo_name) }}" style="width:50px; height: 40px;" alt=""> </td>
+                                            <td> <input type="file" class="form-group" name="multi_image{{ $image->id }}"> multi_image{{ $image->id }}</td>
+                                            <td>
+                                                <input type="submit" class="btn btn-primary px-4" value="Update Image"/>
+                                                <a href="{{ route('delete.product.image', $image->id) }}" class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </form>
+                                    </tr>
 
-                                        <div class="form-group mb-3">
-                                            <label for="multiImg" class="form-label">Multiple Image</label>
-                                            <input name="product_images[]" class="form-control" type="file" id="multiImg" multiple="">
+                            @endforeach
+                        </tbody>
+                    </table>
 
-                                            <div style="margin-top: 5px"  class="row" id="preview_img">
+{{--                        <div class="form-body mt-4">--}}
+{{--                            <div class="row">--}}
 
-                                            </div>
+{{--                                <form id="myForm" method="post" action="{{ route('product.store') }}" enctype="multipart/form-data" >--}}
+{{--                                    @csrf--}}
+{{--                                    <div class="col-lg-6">--}}
+{{--                                    <div class="p-4">--}}
 
-                                        </div>
-                                        <div class="form-group col-3">
-                                            <div class="d-grid">
-                                                <button type="submit" class="btn btn-primary">Update Images</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                </form>
+{{--                                        <div class="form-group mb-3">--}}
+{{--                                            <label for="multiImg" class="form-label">Multiple Image</label>--}}
+{{--                                            <input name="product_images[]" class="form-control" type="file" id="multiImg" multiple="">--}}
 
-                            </div><!--end row-->
-                        </div>
+{{--                                            <div style="margin-top: 5px"  class="row" id="preview_img">--}}
+
+{{--                                            </div>--}}
+
+{{--                                        </div>--}}
+{{--                                        <div class="form-group col-3">--}}
+{{--                                            <div class="d-grid">--}}
+{{--                                                <button type="submit" class="btn btn-primary">Update Images</button>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                </form>--}}
+
+{{--                            </div><!--end row-->--}}
+{{--                        </div>--}}
                 </div>
             </div>
         </div>

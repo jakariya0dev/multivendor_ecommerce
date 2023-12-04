@@ -10,6 +10,7 @@ use App\Models\ProductImages;
 use App\Models\SubCategory;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -115,11 +116,12 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         $product = Product::findOrFail($id);
+        $productImages = ProductImages::where('product_id', $id)->get();
         $brands = Brand::latest()->get();
         $categories = Category::latest()->get();
         $subCategories = SubCategory::where('category_id', $product->category_id)->get();
         $vendors = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
-        return view('admin.products.page_edit_product', compact('product', 'brands','categories', 'subCategories', 'vendors'));
+        return view('admin.products.page_edit_product', compact('product', 'productImages', 'brands','categories', 'subCategories', 'vendors'));
     }
 
     /**
@@ -190,6 +192,49 @@ class ProductController extends Controller
 
         return redirect()->back()->with([
             'message' => 'Product Thumbnail Updated Successfully',
+            'alert-type' => 'success'
+        ]);
+    }
+
+    public function updateProductImage(Request $request, $id){
+
+        if($request->hasFile('multi_image'.$id)){
+
+            unlink($request->input('old_product_image'));
+
+            $image = $request->file('multi_image'.$id);
+            $image_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            $image_path = 'upload/products/multi_images/'.$image_name;
+            Image::make($image)->resize(800, 800)->save($image_path);
+
+            ProductImages::where('id', $id)->update([
+                'photo_name' => $image_path,
+                'updated_at' => Carbon::now()
+            ]);
+
+            return redirect()->back()->with([
+                'message' => 'Product Image Updated Successfully',
+                'alert-type' => 'success'
+            ]);
+        }
+
+        return redirect()->back()->with([
+            'message' => 'Image Not Updated',
+            'alert-type' => 'success'
+        ]);
+
+    }
+
+    public function deleteProductImage($id){
+
+        $productImage = ProductImages::findOrFail($id);
+
+        if(file_exists($productImage->photo_name)){
+            unlink($productImage->photo_name);
+            $productImage->delete();
+        }
+        return redirect()->back()->with([
+            'message' => 'Image Deleted Successfully',
             'alert-type' => 'success'
         ]);
     }
