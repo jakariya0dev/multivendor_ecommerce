@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -64,6 +65,14 @@ Route::middleware(['auth', 'role:vendor'])->group(function (){
     Route::get('/vendor/password/update', [VendorController::class, 'updateVendorPasswordViews'])->name('vendor.password.update');
     Route::post('/vendor/password/update', [VendorController::class, 'vendorPasswordUpdate'])->name('vendor.password.update');
 
+    Route::get('/sub-category/category/{id}', [VendorProductController::class, 'subCategoriesByCategoryId']);
+    Route::post('vendor-product/thumbnail/update', [VendorProductController::class, 'updateThumbnail'])->name('update.vendor-product.thumbnail');
+    Route::post('vendor-product/images/update/{id}', [VendorProductController::class, 'updateProductImage'])->name('update.vendor-product.image');
+    Route::get('vendor-product/images/delete/{id}', [VendorProductController::class, 'deleteProductImage'])->name('delete.vendor-product.image');
+    Route::get('/vendor-product/status/update/{id}/{status}', [VendorProductController::class, 'updateProductStatus'])->name('vendor-product.status.update');
+    Route::get('/vendor-product/delete/{product}', [VendorProductController::class, 'deleteProduct'])->name('vendor-product.delete');
+    Route::get('/sub-category/category/{id}', [VendorProductController::class, 'subCategoriesByCategoryId']);
+    Route::resource('vendor-product', VendorProductController::class);
 });
 
 Route::get('/vendor/register', [VendorController::class, 'vendorRegister'])->name('vendor.register');

@@ -29,8 +29,8 @@
     <link rel="stylesheet" href="{{ asset('assets/backend/css/header-colors.css') }}" />
     {{--    JQuery--}}
     <script src="{{ asset('assets/backend/js/jquery.min.js') }}"></script>
-    {{--    Toaster --}}
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    {{--    Toaster --}}
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
