@@ -170,7 +170,20 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+//        $product = Product::findOrFail($id);
+
+//        if (file_exists($product->product_thumbnail)){
+//            unlink($product->product_thumbnail);
+//        }
+//        $product->delete();
+//        return redirect()->back()->with([
+//            'message' => 'Product Updated Without Successfully',
+//            'alert-type' => 'success'
+//        ]);
+
+        return $id;
+
     }
 
     public function updateThumbnail(Request $request){
@@ -235,6 +248,39 @@ class ProductController extends Controller
         }
         return redirect()->back()->with([
             'message' => 'Image Deleted Successfully',
+            'alert-type' => 'success'
+        ]);
+    }
+
+    public function updateProductStatus($id, int $status){
+
+        Product::where('id', $id)->update(['status' => $status]);
+
+        return redirect()->back()->with([
+            'message' => 'Product Status updated Successfully',
+            'alert-type' => 'success'
+        ]);
+    }
+
+    public function deleteProduct(Product $product){
+
+        if (file_exists($product->product_thumbnail)){
+            unlink($product->product_thumbnail);
+        }
+
+        $productImages = ProductImages::where('product_id', $product->id)->get();
+
+        foreach ($productImages as $productImage){
+            if(file_exists($productImage->photo_name)){
+                unlink($productImage->photo_name);
+                $productImage->delete();
+            }
+        }
+
+        $product->delete();
+
+        return redirect()->back()->with([
+            'message' => 'Product Deleted Successfully',
             'alert-type' => 'success'
         ]);
     }

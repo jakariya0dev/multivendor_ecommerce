@@ -56,13 +56,14 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('category.edit',$product->id) }}" class="btn btn-info"><i class="fa-solid fa-eye"></i></a>
-                                        <a href="{{ route('product.edit',$product->id) }}" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a href="{{ route('category.destroy',$product->id) }}" class="btn btn-danger" id="delete" ><i class="fa-solid fa-trash-can"></i></a>
+{{--                                        <a href="{{ route('category.edit', $product->id) }}" class="btn btn-info"><i class="fa-solid fa-eye"></i></a>--}}
+                                        <a href="{{ route('product.edit', $product->id) }}" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{ route('product.delete', $product) }}" class="bg-danger btn btn-info"><i class="fa-solid fa-trash-can"></i></a>
+
                                         @if($product->status == 0)
-                                            <a href="{{ route('category.destroy',$product->id) }}" class="btn btn-info" id="delete" ><i class="fa-solid fa-thumbs-down"></i></a>
+                                            <a href="{{ route('product.status.update', ['id' => $product->id, 'status' => 1]) }}" class="btn btn-info" id="delete" ><i class="fa-solid fa-thumbs-down"></i></a>
                                         @elseif($product->status == 1)
-                                            <a href="{{ route('category.destroy',$product->id) }}" class="btn btn-info" id="delete" ><i class="fa-solid fa-thumbs-up"></i></a>
+                                            <a href="{{ route('product.status.update', ['id' => $product->id, 'status' => 0]) }}" class="btn btn-info" id="delete" ><i class="fa-solid fa-thumbs-up"></i></a>
                                         @endif
                                     </td>
                                 </tr>

@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -41,6 +42,8 @@ Route::middleware(['auth', 'role:admin'])->group(function (){
     Route::post('product/thumbnail/update', [ProductController::class, 'updateThumbnail'])->name('update.product.thumbnail');
     Route::post('product/images/update/{id}', [ProductController::class, 'updateProductImage'])->name('update.product.image');
     Route::get('product/images/delete/{id}', [ProductController::class, 'deleteProductImage'])->name('delete.product.image');
+    Route::get('product/status/update/{id}/{status}', [ProductController::class, 'updateProductStatus'])->name('product.status.update');
+    Route::get('product/delete/{product}', [ProductController::class, 'deleteProduct'])->name('product.delete');
     Route::resource('product', ProductController::class);
 
     Route::get('/subcategory/category/{id}', [SubCategoryController::class, 'subCategoriesByCategoryId']);
@@ -63,17 +66,18 @@ Route::middleware(['auth', 'role:vendor'])->group(function (){
 
 });
 
-Route::view('/vendor/login', 'vendor.vendor_login')->name('vendor.login');
 Route::get('/vendor/register', [VendorController::class, 'vendorRegister'])->name('vendor.register');
 Route::post('/vendor/register', [VendorController::class, 'newVendorStore'])->name('vendor.register');
 
-Route::view('/admin/login', 'admin.admin_login')->name('admin.login');
-Route::view('/user/login', 'frontend.user.user_login')->name('user.login');
 Route::view('/user/signup', 'frontend.user.user_signup')->name('user.signup');
 Route::post('/user/signup', [UserController::class, 'storeNewUser'])->name('user.signup');
 
 Route::get('/user/account', [UserController::class, 'userAccount'])->name('user.account');
 Route::get('/user/password/reset', [UserController::class, 'resetUserPassword'])->name('user.password.reset');
 
-
+Route::middleware(RedirectIfAuthenticated::class)->group(function (){
+    Route::view('/vendor/login', 'vendor.vendor_login')->name('vendor.login');
+    Route::view('/user/login', 'frontend.user.user_login')->name('user.login');
+    Route::view('/admin/login', 'admin.admin_login')->name('admin.login');
+});
 require __DIR__.'/auth.php';
