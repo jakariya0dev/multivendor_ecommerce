@@ -5,13 +5,13 @@
         <div class="page-content">
             <!--breadcrumb-->
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Categories</div>
+                <div class="breadcrumb-title pe-3">Sliders</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="javascript:"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Edit Category</li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Slider</li>
                         </ol>
                     </nav>
                 </div>
@@ -23,16 +23,24 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="{{ route('category.update', $category->id) }}" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('slider.update', $slider->id) }}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
-                                        <input type="hidden" name="old_pic" value="{{ $category->category_image }}">
+                                        <input type="hidden" name="old_pic" value="{{ $slider->slider_image }}">
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
-                                                <h6 class="mb-0">category Name</h6>
+                                                <h6 class="mb-0">slider Title</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input value="{{ $category->category_name }}" name="category_name" type="text" class="form-control" required/>
+                                                <input value="{{ $slider->slider_title }}" name="slider_title" type="text" class="form-control" required/>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">slider Subitle</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                <input value="{{ $slider->slider_subtitle }}" name="slider_subtitle" type="text" class="form-control" required/>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -40,7 +48,8 @@
                                                 <h6 class="mb-0">Photo</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input name="category_image" id="category_image" type="file" class="form-control"/>
+                                                <input name="old_pic" type="hidden" value="{{$slider->slider_image}}" />
+                                                <input name="slider_image" id="slider_image" type="file" class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -48,7 +57,7 @@
                                                 <h6 class="mb-0"></h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <img id="image" class="mb-0" src="{{ !empty($category->category_name) ? asset($category->category_image) : asset('images/no_image.jpg') }}" style="height: 120px; width: 120px;" alt=""/>
+                                                <img id="image" class="mb-0" src="{{ !empty($slider->slider_name) ? asset($slider->slider_image) : asset('images/no_image.jpg') }}" style="height: 120px; width: 120px;" alt=""/>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -69,7 +78,7 @@
 
     <script>
         $(document).ready(function (){
-            $('#category_image').change(function (e) {
+            $('#slider_image').change(function (e) {
                 let reader = new FileReader();
                 reader.onload = function (e) {
                     $('#image').attr('src', e.target.result)

@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\ProfileController;
@@ -39,6 +40,7 @@ Route::middleware(['auth', 'role:admin'])->group(function (){
     Route::resource('brands', BrandController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('subcategory', SubCategoryController::class);
+    Route::resource('slider', SliderController::class);
 
     Route::post('product/thumbnail/update', [ProductController::class, 'updateThumbnail'])->name('update.product.thumbnail');
     Route::post('product/images/update/{id}', [ProductController::class, 'updateProductImage'])->name('update.product.image');

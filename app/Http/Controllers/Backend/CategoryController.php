@@ -41,9 +41,6 @@ class CategoryController extends Controller
             'category_image' => 'upload/categories/'.$image_name,
         ]);
 
-        $message = [
-
-        ];
         return redirect()->route('category.index')->with([
             'message' => 'Category Added Successfully',
             'alert-type' => 'success'
