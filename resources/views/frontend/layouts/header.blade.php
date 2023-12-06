@@ -355,7 +355,7 @@
                                         </li>
                                         <li class="sub-mega-menu sub-mega-menu-width-34">
                                             <div class="menu-banner-wrap">
-                                                <a href="#"><img src="{{ asset('assets/frontend/imgs/banner/banner-menu.png') }}" alt="Nest" /></a>
+                                                <a href="#"><img src="{{ asset('assets/frontend/imgs/banners/banners-menu.png') }}" alt="Nest" /></a>
                                                 <div class="menu-banner-content">
                                                     <h4>Hot deals</h4>
                                                     <h3>

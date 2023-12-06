@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
@@ -41,6 +42,7 @@ Route::middleware(['auth', 'role:admin'])->group(function (){
     Route::resource('category', CategoryController::class);
     Route::resource('subcategory', SubCategoryController::class);
     Route::resource('slider', SliderController::class);
+    Route::resource('banner', BannerController::class);
 
     Route::post('product/thumbnail/update', [ProductController::class, 'updateThumbnail'])->name('update.product.thumbnail');
     Route::post('product/images/update/{id}', [ProductController::class, 'updateProductImage'])->name('update.product.image');

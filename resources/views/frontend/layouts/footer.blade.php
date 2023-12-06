@@ -15,7 +15,7 @@
                                 <button class="btn" type="submit">Subscribe</button>
                             </form>
                         </div>
-                        <img src="{{ asset('assets/frontend/imgs/banner/banner-9.png') }}" alt="newsletter" />
+                        <img src="{{ asset('assets/frontend/imgs/banners/banners-9.png') }}" alt="newsletter" />
                     </div>
                 </div>
             </div>
