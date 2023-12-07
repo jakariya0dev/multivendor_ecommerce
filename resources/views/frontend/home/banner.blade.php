@@ -1,3 +1,7 @@
+@php
+    $banners = \App\Models\Banner::latest()->get();
+@endphp
+
 <section class="banners mb-25">
     <div class="container">
         <div class="row">

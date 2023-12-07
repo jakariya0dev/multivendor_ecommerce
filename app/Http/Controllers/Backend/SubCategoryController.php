@@ -32,10 +32,11 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request)
     {
+//        return $request->all();
         SubCategory::insert([
-            'category_id' => $request->category_id,
-            'subcategory_name' => $request->subcategory_name,
-            'subcategory_slug' => strtolower(str_replace(' ', '-', $request->subcategory_name))
+            'category_id' => $request->input('category_id'),
+            'subcategory_name' => $request->input('subcategory_name'),
+            'subcategory_slug' => strtolower(str_replace(' ', '-', $request->input('subcategory_name')))
         ]);
         return redirect()->route('subcategory.index')->with([
             'message' => 'Sub-category Added Successfully',

@@ -38,7 +38,7 @@
                                                 <h6 class="mb-0">Photo</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input name="brand_image" id="brand_image" type="file" class="form-control"/>
+                                                <input name="brand_image" id="brand_image" type="file" class="form-control" required/>
                                             </div>
                                         </div>
                                         <div class="row mb-3">

@@ -16,7 +16,7 @@ class BrandController extends Controller
     public function index()
     {
         $brands = Brand::all();
-        return view('admin.page_brands_all', ['brands' => $brands]);
+        return view('admin.brands.page_brands_all', ['brands' => $brands]);
     }
 
     /**
@@ -24,7 +24,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('admin.page_brands_add');
+        return view('admin.brands.page_brands_add');
     }
 
     /**
@@ -37,14 +37,11 @@ class BrandController extends Controller
         Image::make($image)->resize(300, 300)->save('upload/brands/'.$image_name);
 
         Brand::insert([
-            'brand_name' => $request->brand_name,
-            'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+            'brand_name' => $request->input('brand_name'),
+            'brand_slug' => strtolower(str_replace(' ', '-', $request->input('brand_name'))),
             'brand_image' => 'upload/brands/'.$image_name,
         ]);
 
-        $message = [
-
-        ];
         return redirect()->route('brands.index')->with([
             'message' => 'Brand Added Successfully',
             'alert-type' => 'success'
@@ -54,7 +51,7 @@ class BrandController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
 
         return 'show';
@@ -66,7 +63,7 @@ class BrandController extends Controller
     public function edit(string $id)
     {
         $brand= Brand::findOrFail($id);
-        return view('admin.page_brands_edit', compact('brand'));
+        return view('admin.brands.page_brands_edit', compact('brand'));
     }
 
     /**
@@ -80,13 +77,13 @@ class BrandController extends Controller
             $image_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
             Image::make($image)->resize(300, 300)->save('upload/brands/'.$image_name);
 
-            if (file_exists($request->old_pic)){
-                unlink($request->old_pic);
+            if (file_exists($request->input('old_pic'))){
+                unlink($request->input('old_pic'));
             }
 
             Brand::findOrfail($id)->update([
-                'brand_name' => $request->brand_name,
-                'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+                'brand_name' => $request->input('brand_name'),
+                'brand_slug' => strtolower(str_replace(' ', '-', $request->input('brand_name'))),
                 'brand_image' => 'upload/brands/'.$image_name,
             ]);
 
@@ -97,8 +94,8 @@ class BrandController extends Controller
         }
         else{
             Brand::findOrfail($id)->update([
-                'brand_name' => $request->brand_name,
-                'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+                'brand_name' => $request->input('brand_name'),
+                'brand_slug' => strtolower(str_replace(' ', '-', $request->input('brand_name'))),
             ]);
 
             return redirect()->back()->with([
@@ -115,8 +112,8 @@ class BrandController extends Controller
     public function destroy(Request $request, string $id)
     {
         Brand::destroy($id);
-        if (file_exists($request->brand_image)){
-            unlink($request->brand_image);
+        if (file_exists($request->input('brand_image'))){
+            unlink($request->input('brand_image'));
         }
         return redirect()->back()->with([
             'message' => 'Brand Deleted Successfully',

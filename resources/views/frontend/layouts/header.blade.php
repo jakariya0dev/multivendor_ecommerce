@@ -1,3 +1,7 @@
+@php
+    $categories = \App\Models\Category::orderBy('category_name')->get();
+@endphp
+
 <header class="header-area header-style-1 header-height-2">
     <div class="mobile-promotion">
         <span>Grand opening, <strong>up to 15%</strong> off all items. Only <strong>3 days</strong> left</span>
@@ -187,7 +191,6 @@
         </div>
     </div>
 
-
     <div class="header-bottom header-bottom-bg-color sticky-bar">
         <div class="container">
             <div class="header-wrap header-space-between position-relative">
@@ -203,215 +206,61 @@
                         <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
                             <div class="d-flex categori-dropdown-inner">
                                 <ul>
-                                    <li>
-                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-1.svg') }}" alt="" />Milks and Dairies</a>
-                                    </li>
-                                    <li>
-                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-2.svg') }}" alt="" />Clothing & beauty</a>
-                                    </li>
-                                    <li>
-                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-3.svg') }}" alt="" />Pet Foods & Toy</a>
-                                    </li>
-                                    <li>
-                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-4.svg') }}" alt="" />Baking material</a>
-                                    </li>
-                                    <li>
-                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-5.svg') }}" alt="" />Fresh Fruit</a>
-                                    </li>
+                                    @foreach($categories as $category)
+                                        <li>
+                                            <a href=""> <img src="{{ asset($category->category_image) }}" alt=""/>{{ $category->category_name }}</a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                                 <ul class="end">
-                                    <li>
-                                        <a href=""> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-6.svg') }}" alt="" />Wines & Drinks</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-7.svg') }}" alt="" />Fresh Seafood</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-8.svg') }}" alt="" />Fast food</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-9.svg') }}" alt="" />Vegetables</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/categories-10.svg') }}" alt="" />Bread and Juice</a>
-                                    </li>
+                                    @foreach($categories as $category)
+                                        <li>
+                                            <a href=""> <img src="{{ asset($category->category_image) }}" alt=""/>{{ $category->category_name }}</a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
-                            <div class="more_slide_open" style="display: none">
-                                <div class="d-flex categori-dropdown-inner">
-                                    <ul>
-                                        <li>
-                                            <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-1.svg') }}" alt="" />Milks and Dairies</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-2.svg') }}" alt="" />Clothing & beauty</a>
-                                        </li>
-                                    </ul>
-                                    <ul class="end">
-                                        <li>
-                                            <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-3.svg') }}" alt="" />Wines & Drinks</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-4.svg') }}" alt="" />Fresh Seafood</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">Show more...</span></div>
+{{--                            <div class="more_slide_open" style="display: none">--}}
+{{--                                <div class="d-flex categori-dropdown-inner">--}}
+{{--                                    <ul>--}}
+{{--                                        <li>--}}
+{{--                                            <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-1.svg') }}" alt="" />Milks and Dairies</a>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-2.svg') }}" alt="" />Clothing & beauty</a>--}}
+{{--                                        </li>--}}
+{{--                                    </ul>--}}
+{{--                                    <ul class="end">--}}
+{{--                                        <li>--}}
+{{--                                            <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-3.svg') }}" alt="" />Wines & Drinks</a>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-4.svg') }}" alt="" />Fresh Seafood</a>--}}
+{{--                                        </li>--}}
+{{--                                    </ul>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">Show more...</span></div>--}}
                         </div>
                     </div>
                     <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                         <nav>
                             <ul>
 
-                                <li>
-                                    <a class="active" href="#">Home  </a>
+                                @foreach($categories as $category)
+                                    <li>
+                                        <a href="#">{{ $category->category_name }}<i class="fi-rs-angle-down"></i></a>
+                                        <ul class="sub-menu">
+                                            @php
+                                                $subcategories = \App\Models\SubCategory::where('category_id', $category->id)->orderBy('subcategory_name')->get();
+                                            @endphp
+                                            @foreach($subcategories as $subcategory)
+                                                <li><a href="#">{{ $subcategory->subcategory_name }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @endforeach
 
-                                </li>
-                                <li>
-                                    <a href="#">About</a>
-                                </li>
-                                <li>
-                                    <a href="#">Shop <i class="fi-rs-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="#">Shop Grid – Right Sidebar</a></li>
-                                        <li><a href="#">Shop Grid – Left Sidebar</a></li>
-                                        <li><a href="#">Shop List – Right Sidebar</a></li>
-                                        <li><a href="#">Shop List – Left Sidebar</a></li>
-                                        <li><a href="#">Shop - Wide</a></li>
-                                        <li>
-                                            <a href="#">Single Product <i class="fi-rs-angle-right"></i></a>
-                                            <ul class="level-menu">
-                                                <li><a href="#">Product – Right Sidebar</a></li>
-                                                <li><a href="#">Product – Left Sidebar</a></li>
-                                                <li><a href="#">Product – No sidebar</a></li>
-                                                <li><a href="#">Product – Vendor Info</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Shop – Filter</a></li>
-                                        <li><a href="#">Shop – Wishlist</a></li>
-                                        <li><a href="#">Shop – Cart</a></li>
-                                        <li><a href="#">Shop – Checkout</a></li>
-                                        <li><a href="#">Shop – Compare</a></li>
-                                        <li>
-                                            <a href="#">Shop Invoice<i class="fi-rs-angle-right"></i></a>
-                                            <ul class="level-menu">
-                                                <li><a href="#">Shop Invoice 1</a></li>
-                                                <li><a href="#">Shop Invoice 2</a></li>
-                                                <li><a href="#">Shop Invoice 3</a></li>
-                                                <li><a href="#">Shop Invoice 4</a></li>
-                                                <li><a href="#">Shop Invoice 5</a></li>
-                                                <li><a href="#">Shop Invoice 6</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Vendors <i class="fi-rs-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="#">Vendors Grid</a></li>
-                                        <li><a href="#">Vendors List</a></li>
-                                        <li><a href="#">Vendor Details 01</a></li>
-                                        <li><a href="#">Vendor Details 02</a></li>
-                                        <li><a href="#">Vendor Dashboard</a></li>
-                                        <li><a href="#">Vendor Guide</a></li>
-                                    </ul>
-                                </li>
-                                <li class="position-static">
-                                    <a href="#">Mega menu <i class="fi-rs-angle-down"></i></a>
-                                    <ul class="mega-menu">
-                                        <li class="sub-mega-menu sub-mega-menu-width-22">
-                                            <a class="menu-title" href="#">Fruit & Vegetables</a>
-                                            <ul>
-                                                <li><a href="#">Meat & Poultry</a></li>
-                                                <li><a href="#">Fresh Vegetables</a></li>
-                                                <li><a href="#">Herbs & Seasonings</a></li>
-                                                <li><a href="#">Cuts & Sprouts</a></li>
-                                                <li><a href="#">Exotic Fruits & Veggies</a></li>
-                                                <li><a href="#">Packaged Produce</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="sub-mega-menu sub-mega-menu-width-22">
-                                            <a class="menu-title" href="#">Breakfast & Dairy</a>
-                                            <ul>
-                                                <li><a href="#">Milk & Flavoured Milk</a></li>
-                                                <li><a href="#">Butter and Margarine</a></li>
-                                                <li><a href="#">Eggs Substitutes</a></li>
-                                                <li><a href="#">Marmalade's</a></li>
-                                                <li><a href="#">Sour Cream</a></li>
-                                                <li><a href="#">Cheese</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="sub-mega-menu sub-mega-menu-width-22">
-                                            <a class="menu-title" href="#">Meat & Seafood</a>
-                                            <ul>
-                                                <li><a href="#">Breakfast Sausage</a></li>
-                                                <li><a href="#">Dinner Sausage</a></li>
-                                                <li><a href="#">Chicken</a></li>
-                                                <li><a href="#">Sliced Deli Meat</a></li>
-                                                <li><a href="#">Wild Caught Fillets</a></li>
-                                                <li><a href="#">Crab and Shellfish</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="sub-mega-menu sub-mega-menu-width-34">
-                                            <div class="menu-banner-wrap">
-                                                <a href="#"><img src="{{ asset('assets/frontend/imgs/banners/banners-menu.png') }}" alt="Nest" /></a>
-                                                <div class="menu-banner-content">
-                                                    <h4>Hot deals</h4>
-                                                    <h3>
-                                                        Don't miss<br />
-                                                        Trending
-                                                    </h3>
-                                                    <div class="menu-banner-price">
-                                                        <span class="new-price text-success">Save to 50%</span>
-                                                    </div>
-                                                    <div class="menu-banner-btn">
-                                                        <a href="#">Shop now</a>
-                                                    </div>
-                                                </div>
-                                                <div class="menu-banner-discount">
-                                                    <h3>
-                                                        <span>25%</span>
-                                                        off
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Blog <i class="fi-rs-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="#">Blog Category Grid</a></li>
-                                        <li><a href="#">Blog Category List</a></li>
-                                        <li><a href="#">Blog Category Big</a></li>
-                                        <li><a href="#">Blog Category Wide</a></li>
-                                        <li>
-                                            <a href="#">Single Post <i class="fi-rs-angle-right"></i></a>
-                                            <ul class="level-menu level-menu-modify">
-                                                <li><a href="#">Left Sidebar</a></li>
-                                                <li><a href="#">Right Sidebar</a></li>
-                                                <li><a href="#">No Sidebar</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Pages <i class="fi-rs-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                        <li><a href="#">My Account</a></li>
-                                        <li><a href="#">Login</a></li>
-                                        <li><a href="#">Register</a></li>
-                                        <li><a href="#">Forgot password</a></li>
-                                        <li><a href="#">Reset password</a></li>
-                                        <li><a href="#">Purchase Guide</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
-                                        <li><a href="#">Terms of Service</a></li>
-                                        <li><a href="#">404 Page</a></li>
-                                    </ul>
-                                </li>
                                 <li>
                                     <a href="#">Contact</a>
                                 </li>
