@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -93,4 +94,9 @@ Route::middleware(RedirectIfAuthenticated::class)->group(function (){
     Route::view('/user/login', 'frontend.user.user_login')->name('user.login');
     Route::view('/admin/login', 'admin.admin_login')->name('admin.login');
 });
+
+// Frontend
+// Product
+Route::get('/product/{id}/{slug}', [IndexController::class, 'productDetails']);
+
 require __DIR__.'/auth.php';

@@ -21,7 +21,7 @@
                             <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        <a href="#">
+                                        <a href="{{ url('/product/'.$product->id.'/'.$product->product_slug) }}">
                                             <img class="default-img" src="{{ asset($product->product_thumbnail) }}" alt="" />
                                         </a>
                                     </div>
@@ -42,7 +42,7 @@
                                     <div class="product-category">
                                         <a href="#">{{ $product['category']['category_name'] }}</a>
                                     </div>
-                                    <h2><a href="#">{{ $product->product_title }}</a></h2>
+                                    <h2><a href="{{ url('/product/'.$product->id.'/'.$product->product_slug) }}">{{ $product->product_name }}</a></h2>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width: 90%"></div>
@@ -55,10 +55,10 @@
                                     <div class="product-card-bottom">
                                         <div class="product-price">
                                             @if($product->discount_price == null)
-                                                <span>{{ $product->selling_price }}</span>
+                                                <span>${{ $product->selling_price }}</span>
                                             @else
-                                                <span>{{ $product->selling_price - $product->discount_price }}</span>
-                                                <span class="old-price">{{ $product->selling_price }}</span>
+                                                <span>${{ $product->selling_price - $product->discount_price }}</span>
+                                                <span class="old-price">${{ $product->selling_price }}</span>
                                             @endif
                                         </div>
                                         <div class="add-cart">
