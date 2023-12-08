@@ -66,7 +66,7 @@ class ProductController extends Controller
             'long_description' => $request->input('long_description'),
 
             'hot_deals' => $request->input('hot_deals'),
-            'featured' => $request->input('featured'),
+            'featured_item' => $request->input('featured_item'),
             'special_offer' => $request->input('special_offer'),
             'special_deals' => $request->input('special_deals'),
 
@@ -149,7 +149,7 @@ class ProductController extends Controller
             'long_description' => $request->input('long_description'),
 
             'hot_deals' => $request->input('hot_deals'),
-            'featured' => $request->input('featured'),
+            'featured_item' => $request->input('featured_item'),
             'special_offer' => $request->input('special_offer'),
             'special_deals' => $request->input('special_deals'),
 

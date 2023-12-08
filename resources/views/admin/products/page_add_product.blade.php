@@ -130,25 +130,25 @@
                                             <div class="form-group col-md-6">
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="hot_deals" type="checkbox" value="1" id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault"> Hot Deals</label>
+                                                    <label class="form-check-label" for="flexCheckDefault">Hot Deals</label>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="hot_deals" type="checkbox" value="1" id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault"> Hot Deals</label>
+                                                    <input class="form-check-input" name="featured_item" type="checkbox" value="1" id="flexCheckDefault">
+                                                    <label class="form-check-label" for="flexCheckDefault">Featured Item</label>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="hot_deals" type="checkbox" value="1" id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault"> Hot Deals</label>
+                                                    <input class="form-check-input" name="special_offer" type="checkbox" value="1" id="flexCheckDefault">
+                                                    <label class="form-check-label" for="flexCheckDefault">Spacial Offer</label>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="hot_deals" type="checkbox" value="1" id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault"> Hot Deals</label>
+                                                    <input class="form-check-input" name="special_deals" type="checkbox" value="1" id="flexCheckDefault">
+                                                    <label class="form-check-label" for="flexCheckDefault">Spacial Deals</label>
                                                 </div>
                                             </div>
                                             <hr>

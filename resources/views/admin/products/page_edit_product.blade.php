@@ -120,7 +120,7 @@
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <div class="form-check">
-                                                    <input {{ $product->featured == 1 ? 'checked' : '' }} class="form-check-input" name="featured" type="checkbox" value="1" id="flexCheckDefault">
+                                                    <input {{ $product->featured_item == 1 ? 'checked' : '' }} class="form-check-input" name="featured" type="checkbox" value="1" id="flexCheckDefault">
                                                     <label class="form-check-label" for="flexCheckDefault"> Featured Product</label>
                                                 </div>
                                             </div>
