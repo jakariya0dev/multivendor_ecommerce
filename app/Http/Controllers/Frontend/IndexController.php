@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImages;
+use App\Models\SubCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -30,9 +31,22 @@ class IndexController extends Controller
         return view('frontend.vendor_all_list', compact('vendors', ));
     }
 
-    public function categoryWiseProduct($id){
+    public function categoryWiseProduct($id)
+    {
+        $recent_products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(5)->get();
         $products = Product::where('category_id', $id)->where('status', 1)->get();
         $categories = Category::get();
-        return view('frontend.products_by_category', compact('products', 'categories'));
+        $category_name = Category::findOrFail($id)->category_name;
+        return view('frontend.products_by_category', compact('products', 'categories', 'recent_products', 'category_name'));
+    }
+
+    public function subCategoryWiseProduct($id)
+    {
+        $recent_products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(5)->get();
+        $products = Product::where('sub_category_id', $id)->where('status', 1)->get();
+        $categories = Category::get();
+        $subcategory = SubCategory::findOrFail($id);
+        $category_name = $subcategory['category']->category_name;
+        return view('frontend.products_by_subcategory', compact('products', 'categories', 'recent_products', 'subcategory', 'category_name'));
     }
 }

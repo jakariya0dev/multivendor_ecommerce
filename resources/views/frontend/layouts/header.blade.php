@@ -60,7 +60,7 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="#"><img src="{{ asset('assets/frontend/imgs/theme/logo.svg') }}" alt="logo" /></a>
+                    <a href="{{ route('home') }}"><img src="{{ asset('assets/frontend/imgs/theme/logo.svg') }}" alt="logo" /></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
@@ -237,7 +237,9 @@
                                                 $subcategories = \App\Models\SubCategory::where('category_id', $category->id)->orderBy('subcategory_name')->get();
                                             @endphp
                                             @foreach($subcategories as $subcategory)
-                                                <li><a href="#">{{ $subcategory->subcategory_name }}</a></li>
+                                                <li>
+                                                    <a href="{{  url('/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug)  }}">{{ $subcategory->subcategory_name }}</a>
+                                                </li>
                                             @endforeach
                                         </ul>
                                     </li>

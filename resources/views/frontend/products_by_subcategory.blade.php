@@ -6,10 +6,10 @@
             <div class="archive-header">
                 <div class="row align-items-center">
                     <div class="col-xl-3">
-                        <h1 class="mb-15">{{ $category_name }}</h1>
+                        <h1 class="mb-15">{{ $subcategory->subcategory_name }}</h1>
                         <div class="breadcrumb">
                             <a href="{{ route('home') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                            <span></span> Category <span></span> {{ $category_name }}
+                            <span></span> {{ $category_name }} <span></span> {{ $subcategory->subcategory_name }}
                         </div>
                     </div>
 
