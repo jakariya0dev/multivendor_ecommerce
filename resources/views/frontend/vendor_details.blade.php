@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop-grid-right.html">Snack</a>
+                                        <a href="{{ url('/category/'.$product->category_id.'/'. $product['category']->category_slug) }}">{{ $product['category']->category_name }}</a>
                                     </div>
                                     <h2><a href="{{ url('/product/'.$product->id.'/'.$product->product_slug) }}">{{ $product->product_name }}</a></h2>
                                     <div class="product-rate-cover">
@@ -163,7 +163,7 @@
                                 <li><img class="mr-5" src="{{ asset('assets/frontend/imgs/theme/icons/icon-location.svg') }}" alt="" /><strong>Address: </strong> <span> {{ $vendor->address }} </span></li>
                                 <li><img class="mr-5" src="{{ asset('assets/frontend/imgs/theme/icons/icon-contact.svg') }}" alt="" /><strong>Call Us:</strong><span> {{ $vendor->mobile }} </span></li>
                             </ul>
-                            <a href="vendor-details-1.html" class="btn btn-xs">Contact Seller <i class="fi-rs-arrow-small-right"></i></a>
+                            <a href="#" class="btn btn-xs">Contact Seller <i class="fi-rs-arrow-small-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -192,7 +192,7 @@
                         <span>Organic</span>
                         <h4>
                             Save 17% <br />
-                            on <span class="text-brand">Oganic</span><br />
+                            on <span class="text-brand">Organic</span><br />
                             Juice
                         </h4>
                     </div>

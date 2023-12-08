@@ -19,7 +19,7 @@
     <!--Products Tabs-->
 
     <!--Best Sales-->
-    @include('frontend.home.feature_products')
+    @include('frontend.home.featured_products')
     <!--End Best Sales-->
 
     <!-- TV Category -->
@@ -27,11 +27,11 @@
     <!--End TV Category -->
 
     <!-- T-shirt Category -->
-{{--    @include('frontend.home.category_two')--}}
+    {{--    @include('frontend.home.category_two')--}}
     <!--End T-shirt Category -->
 
     <!-- Computer Category -->
-{{--    @include('frontend.home.category_three')--}}
+    {{--    @include('frontend.home.category_three')--}}
     <!--End Computer Category -->
 
     <!--4 columns-->
