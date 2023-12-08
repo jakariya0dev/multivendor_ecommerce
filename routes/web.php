@@ -98,5 +98,7 @@ Route::middleware(RedirectIfAuthenticated::class)->group(function (){
 // Frontend
 // Product
 Route::get('/product/{id}/{slug}', [IndexController::class, 'productDetails']);
+Route::get('/vendor/details/{id}', [IndexController::class, 'vendorDetails'])->name('vendor.details');
+Route::get('/vendor/list', [IndexController::class, 'allVendorList'])->name('vendor.list');
 
 require __DIR__.'/auth.php';
