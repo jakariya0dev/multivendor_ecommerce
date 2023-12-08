@@ -167,31 +167,29 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="sidebar-widget widget-category-2 mb-30">
                     <h5 class="section-title style-1 mb-30">Category</h5>
                     <ul>
-                        <li>
-                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-1.svg" alt="" />Milks & Dairies</a><span class="count">30</span>
-                        </li>
-                        <li>
-                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-2.svg" alt="" />Clothing</a><span class="count">35</span>
-                        </li>
-                        <li>
-                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-3.svg" alt="" />Pet Foods </a><span class="count">42</span>
-                        </li>
-                        <li>
-                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-4.svg" alt="" />Baking material</a><span class="count">68</span>
-                        </li>
-                        <li>
-                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-5.svg" alt="" />Fresh Fruit</a><span class="count">87</span>
-                        </li>
+                        @foreach($categories as $category)
+                            @php
+                                $products = \App\Models\Product::where('status', 1)->where('category_id', $category->id)->get();
+                            @endphp
+                            <li>
+                                <a href="{{ url('/category/'.$category->id.'/'.$category->category_slug) }}">
+                                    <img src="{{ asset($category->category_image) }}" alt="" /> {{ $category->category_name }}
+                                </a>
+                                <span class="count">{{ count($products) }}</span>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
-                <!-- Fillter By Price -->
+
+                <!-- Filter By Price -->
                 <div class="banner-img wow fadeIn mb-lg-0 animated d-lg-block d-none">
-                    <img src="assets/imgs/banner/banner-11.png" alt="" />
+                    <img src="{{ asset('assets/backend/imgs/banner/banner-11.png') }}" alt="" />
                     <div class="banner-text">
-                        <span>Oganic</span>
+                        <span>Organic</span>
                         <h4>
                             Save 17% <br />
                             on <span class="text-brand">Oganic</span><br />

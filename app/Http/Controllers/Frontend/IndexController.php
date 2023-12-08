@@ -21,14 +21,15 @@ class IndexController extends Controller
     }
 
     public function vendorDetails($id){
+        $categories = Category::get();
         $vendor = User::findOrFail($id);
         $products = Product::where('vendor_id', $vendor->id)->where('status', 1)->get();
-        return view('frontend.vendor_details', compact('vendor', 'products'));
+        return view('frontend.vendor_details', compact('vendor', 'products', 'categories'));
     }
 
     public function allVendorList(){
         $vendors = User::where('status', 'active')->where('role', 'vendor')->orderBy('id', 'desc')->get();
-        return view('frontend.vendor_all_list', compact('vendors', ));
+        return view('frontend.vendor_all_list', compact('vendors'));
     }
 
     public function categoryWiseProduct($id)

@@ -31,17 +31,17 @@
                         <div class="d-flex justify-content-between align-items-end mb-30">
                             <div>
                                 <div class="product-category">
-                                    <span class="text-muted">Since 2012</span>
+                                    <span class="text-muted">Since {{ Carbon\Carbon::parse($vendor->joining_date)->format('Y') }}</span>
                                 </div>
-                                <h4 class="mb-5"><a href="#">{{ $vendor->name }}</a></h4>
+                                <h4 class="mb-5"><a href="{{ route('vendor.details', $vendor->id) }}">{{ $vendor->name }}</a></h4>
                                 <div class="product-rate-cover">
 
                                     <span class="font-small total-product">
 
                                         @php
-                                            $products = \App\Models\Product::where('status', 'active')->where('vendor_id', $vendor->id)->get();
+                                            $products = \App\Models\Product::where('vendor_id', $vendor->id)->where('status', 1)->get();
                                         @endphp
-                                        {{ count($products) }}
+                                        {{ count($products) }} products
 
                                     </span>
                                 </div>
