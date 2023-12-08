@@ -39,10 +39,10 @@
                                     <span class="font-small total-product">
 
                                         @php
-//                                            $products = App\Models\Product::where('vendor_id',$vendor->id)->get();
                                             $products = \App\Models\Product::where('status', 'active')->where('vendor_id', $vendor->id)->get();
                                         @endphp
                                         {{ count($products) }}
+
                                     </span>
                                 </div>
                             </div>

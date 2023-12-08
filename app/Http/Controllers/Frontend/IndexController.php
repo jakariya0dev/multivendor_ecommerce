@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImages;
 use App\Models\User;
@@ -25,7 +26,13 @@ class IndexController extends Controller
     }
 
     public function allVendorList(){
-        $vendors = \App\Models\User::where('status', 'active')->where('role', 'vendor')->orderBy('id', 'desc')->get();
+        $vendors = User::where('status', 'active')->where('role', 'vendor')->orderBy('id', 'desc')->get();
         return view('frontend.vendor_all_list', compact('vendors', ));
+    }
+
+    public function categoryWiseProduct($id){
+        $products = Product::where('category_id', $id)->where('status', 1)->get();
+        $categories = Category::get();
+        return view('frontend.products_by_category', compact('products', 'categories'));
     }
 }

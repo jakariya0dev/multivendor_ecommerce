@@ -12,7 +12,6 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info">
                         <ul>
-
                             <li><a href="#">My Cart</a></li>
                             <li><a href="#">Checkout</a></li>
                             <li><a href="#">Order Tracking</a></li>
@@ -206,41 +205,24 @@
                         <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
                             <div class="d-flex categori-dropdown-inner">
                                 <ul>
-                                    @foreach($categories as $category)
-                                        <li>
-                                            <a href=""> <img src="{{ asset($category->category_image) }}" alt=""/>{{ $category->category_name }}</a>
-                                        </li>
+                                    @foreach($categories as $key => $category)
+                                        @if($key%2 == 0)
+                                            <li>
+                                                <a href="{{ url('/category/'.$category->id.'/'.$category->category_slug) }}"> <img src="{{ asset($category->category_image) }}" alt=""/>{{ $category->category_name }}</a>
+                                            </li>
+                                        @endif
                                     @endforeach
                                 </ul>
                                 <ul class="end">
-                                    @foreach($categories as $category)
-                                        <li>
-                                            <a href=""> <img src="{{ asset($category->category_image) }}" alt=""/>{{ $category->category_name }}</a>
-                                        </li>
+                                    @foreach($categories as $key => $category)
+                                        @if($key%2 != 0)
+                                            <li>
+                                                <a href="{{ url('/category/'.$category->id.'/'.$category->category_slug) }}"> <img src="{{ asset($category->category_image) }}" alt=""/>{{ $category->category_name }}</a>
+                                            </li>
+                                        @endif
                                     @endforeach
                                 </ul>
                             </div>
-{{--                            <div class="more_slide_open" style="display: none">--}}
-{{--                                <div class="d-flex categori-dropdown-inner">--}}
-{{--                                    <ul>--}}
-{{--                                        <li>--}}
-{{--                                            <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-1.svg') }}" alt="" />Milks and Dairies</a>--}}
-{{--                                        </li>--}}
-{{--                                        <li>--}}
-{{--                                            <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-2.svg') }}" alt="" />Clothing & beauty</a>--}}
-{{--                                        </li>--}}
-{{--                                    </ul>--}}
-{{--                                    <ul class="end">--}}
-{{--                                        <li>--}}
-{{--                                            <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-3.svg') }}" alt="" />Wines & Drinks</a>--}}
-{{--                                        </li>--}}
-{{--                                        <li>--}}
-{{--                                            <a href="#"> <img src="{{ asset('assets/frontend/imgs/theme/icons/icon-4.svg') }}" alt="" />Fresh Seafood</a>--}}
-{{--                                        </li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">Show more...</span></div>--}}
                         </div>
                     </div>
                     <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
