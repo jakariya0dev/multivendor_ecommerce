@@ -103,4 +103,6 @@ Route::get('/vendor/list', [IndexController::class, 'allVendorList'])->name('ven
 Route::get('/category/{id}/{slug}', [IndexController::class, 'categoryWiseProduct']);
 Route::get('/subcategory/{id}/{slug}', [IndexController::class, 'subCategoryWiseProduct']);
 
+Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjaxData']);
+
 require __DIR__.'/auth.php';

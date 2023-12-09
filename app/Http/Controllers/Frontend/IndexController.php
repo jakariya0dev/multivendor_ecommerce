@@ -50,4 +50,16 @@ class IndexController extends Controller
         $category_name = $subcategory['category']->category_name;
         return view('frontend.products_by_subcategory', compact('products', 'categories', 'recent_products', 'subcategory', 'category_name'));
     }
+
+    public function productViewAjaxData($id){
+
+        $product = Product::with('category','brand')->findOrFail($id);
+
+        return response()->json(array(
+            'product' => $product,
+            'color' => explode(',', $product->product_color),
+            'size' => explode(',', $product->product_size),
+        ));
+
+    }
 }

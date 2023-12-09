@@ -55,5 +55,59 @@
         <!-- Template  JS -->
         <script src="{{ asset('assets/frontend/js/main.js?v=5.3') }}"></script>
         <script src="{{ asset('assets/frontend/js/shop.js?v=5.3') }}"></script>
+
+        <script>
+
+                function quickView(id) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/product/view/modal/' + id,
+                        dataType: 'json',
+                        success: function (data) {
+                            $('#productName').text(data.product.product_name);
+                            $('#productCode').text(data.product.product_code);
+                            $('#brandName').text(data.product.brand.brand_name);
+                            $('#productCategory').text(data.product.category.category_name);
+                            $('#productThumbnail').html(`<img  src="{{ asset('${data.product.product_thumbnail}') }}"  alt=""/>`);
+
+
+                            if(data.product.discount_price == null){
+                                $('#productDiscount').css('display', 'none');
+                                $('#oldPrice').text('');
+                                $('#productPrice').text(`\$${data.product.selling_price}`);
+                            }else{
+                                $('#productDiscount').text(`\$${data.product.discount_price} off`);
+                                $('#oldPrice').text(`\$${data.product.selling_price}`);
+                                $('#productPrice').text(`\$${data.product.selling_price-data.product.discount_price}`);
+                            }
+
+                            if (data.product.product_size == null){
+                                $('#productSize').hide();
+                            }else {
+                                $('#productSize').empty();
+                                data.size.forEach((value) => {
+                                    $('#productSize').append(`<option value="${value}">${value}</option>`);
+                                });
+                            }
+
+                            if (data.product.product_color == null){
+                                $('#productColor').hide();
+                            }else {
+                                $('#productColor').empty();
+                                data.color.forEach((value) => {
+                                    $('#productColor').append(`<option value="${value}">${value}</option>`);
+                                });
+                            }
+
+                            if (data.product.product_quantity > 0){
+                                $('#stockOut').hide();
+                            }else {
+                                $('#available').hide();
+                            }
+
+                        }
+                    })
+            }
+        </script>
     </body>
 </html>
