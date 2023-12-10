@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -103,6 +104,9 @@ Route::get('/vendor/list', [IndexController::class, 'allVendorList'])->name('ven
 Route::get('/category/{id}/{slug}', [IndexController::class, 'categoryWiseProduct']);
 Route::get('/subcategory/{id}/{slug}', [IndexController::class, 'subCategoryWiseProduct']);
 
-Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjaxData']);
+Route::get('/product/view/modal/{id}', [IndexController::class, 'productViewAjaxData']);
+Route::post('/product-add-to-cart/{id}', [CartController::class, 'productAddToCart']);
+Route::get('/all-cart-data', [CartController::class, 'getAllCartData']);
+Route::get('/remove-cart-item/{id}', [CartController::class, 'removeCartItem']);
 
 require __DIR__.'/auth.php';

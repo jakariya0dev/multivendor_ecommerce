@@ -1,7 +1,7 @@
 <div class="modal fade custom-modal" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModal"></button>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
@@ -9,28 +9,25 @@
                             <span class="zoom-icon"><i class="fi-rs-search"></i></span>
                             <!-- MAIN SLIDES -->
                             <div class="product-image-slider">
-                                <figure class="border-radius-10" id="productThumbnail">
-
-                                </figure>
+                                <figure class="border-radius-10" id="productThumbnail"> </figure>
                             </div>
                         </div>
                         <!-- End Gallery -->
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12">
+
                         <div class="detail-info pr-30 pl-30">
                             <span class="stock-status out-stock" id="productDiscount"></span>
                             <h5 class="title-detail">
                                 <a href="#" id="productName" class="text-heading"></a>
                             </h5>
                             <br>
-
                             <div class="attr-detail attr-size mb-30">
                                 <strong class="mr-10" style="width:60px;">Size : </strong>
                                 <select class="form-control unicase-form-control" id="productSize" name="product_size">
                                     <option selected="" disabled="">--Choose Size--</option>
                                 </select>
                             </div>
-
 
                             <div class="attr-detail attr-size mb-30">
                                 <strong class="mr-10" style="width:60px;">Color : </strong>
@@ -49,13 +46,15 @@
                                 </div>
                             </div>
                             <div class="detail-extralink mb-30">
+
                                 <div class="detail-qty border radius">
                                     <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                    <input type="text" name="quantity" class="qty-val" value="1" min="1">
+                                    <input type="text" id="selectedQuantity" class="qty-val" value="1" min="1" required>
                                     <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                 </div>
                                 <div class="product-extra-link2">
-                                    <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                    <input type="hidden" id="product_id">
+                                    <button type="submit" class="button button-add-to-cart" onclick="addToCart()"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
                                 </div>
                             </div>
 
