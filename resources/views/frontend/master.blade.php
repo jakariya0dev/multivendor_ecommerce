@@ -16,6 +16,8 @@
         <!-- Template CSS -->
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/plugins/animate.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/main.css?v=5.3') }}" />
+
+        <script src="{{ asset('assets/frontend/js/vendor/jquery-3.6.0.min.js') }}"></script>
     </head>
     <body>
         <!-- Modal -->
@@ -35,7 +37,7 @@
         @include('frontend.layouts.pre_loader')
         <!-- Vendor JS-->
         <script src="{{ asset('assets/frontend/js/vendor/modernizr-3.6.0.min.js') }}"></script>
-        <script src="{{ asset('assets/frontend/js/vendor/jquery-3.6.0.min.js') }}"></script>
+{{--        <script src="{{ asset('assets/frontend/js/vendor/jquery-3.6.0.min.js') }}"></script>--}}
         <script src="{{ asset('assets/frontend/js/vendor/jquery-migrate-3.3.0.min.js') }}"></script>
         <script src="{{ asset('assets/frontend/js/vendor/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('assets/frontend/js/plugins/slick.js') }}"></script>
@@ -57,7 +59,7 @@
         <script src="{{ asset('assets/frontend/js/main.js?v=5.3') }}"></script>
         <script src="{{ asset('assets/frontend/js/shop.js?v=5.3') }}"></script>
 
-{{--         Sweet Alert--}}
+        <!-- Sweet Alert-->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <script>
@@ -69,6 +71,8 @@
             });
 
             addDataToMiniCart();
+
+            getWishListData();
 
             function quickView(id) {
                 $.ajax({
@@ -133,12 +137,10 @@
                     type: "POST",
                     dataType : 'json',
                     data:{
-                        color:color, size:size, quantity:quantity,
+                        color: color, size:size, quantity: quantity,
                     },
-                    url: "/product-add-to-cart/"+id,
+                    url: "/add-to-cart/"+id,
                     success:function(response){
-
-                        // addDataToMiniCart(response);
 
                         $('#closeModal').click();
 
@@ -150,6 +152,7 @@
                                 showConfirmButton: false,
                                 timer: 2000
                             });
+                            addDataToMiniCart();
                         }
                         else {
                             Swal.fire({
@@ -160,26 +163,9 @@
                                 timer: 2000
                             });
                         }
-
-                        $.each(response.carts, function (key, value) {
-                            $('#headerCart').html(`
-                                <li>
-                                    <div class="shopping-cart-img">
-                                        <a href=""><img alt="Nest" src="" /></a>
-                                    </div>
-                                    <div class="shopping-cart-title">
-                                        <h4><a href="">${value.name}</a></h4>
-                                        <h4><span>${value.qty} × </span>$${value.qty}</h4>
-                                    </div>
-                                    <div class="shopping-cart-delete">
-                                        <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                    </div>
-                                </li>
-                        `)
-                        });
-                        addDataToMiniCart();
                     }
                 });
+
             }
 
             function addDataToMiniCart() {
@@ -207,8 +193,8 @@
                                 </li>
                                 <hr> <br>
                         `;
-
                         });
+
                         $('#headerCart').html(cartList);
                         $('#totalAmount').text(response.cart_total);
                     }
@@ -243,6 +229,165 @@
                         }
                     }
                 });
+            }
+
+            function addToCartFromDetailsPage() {
+
+                let id = $('#detailsProductId').val();
+                let quantity = $('#detailsSelectedQuantity').val();
+                let color = $('#detailsProductColor').val();
+                let size = $('#detailsProductSize').val();
+
+                $.ajax({
+                    type: "POST",
+                    dataType : 'json',
+                    data:{
+                        color: color, size:size, quantity: quantity,
+                    },
+                    url: "/add-to-cart/"+id,
+                    success:function(response){
+
+                        if($.isEmptyObject(response.error)){
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Added to cart",
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
+                        }
+                        else {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "error",
+                                title: "Failed to cart",
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
+
+                            addDataToMiniCart();
+                        }
+                    }
+                });
+
+            }
+
+            function addToWishList(id) {
+
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: '/add-to-wishlist/'+id,
+                    success: function (response) {
+                        if($.isEmptyObject(response.error)){
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: response.success,
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
+                        }
+                        else {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "error",
+                                title: response.error,
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
+
+                            addDataToMiniCart();
+                        }
+                    }
+                });
+            }
+
+            function getWishListData() {
+
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    url: '/wishlist/all',
+                    success: function (response) {
+
+                        let wishlistData = '';
+
+                        $.each(response.data, function (key, value) {
+                            wishlistData += `
+                                            <tr class="pt-30">
+                                                <td class="custome-checkbox pl-30">
+                                                    <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="" />
+                                                    <label class="form-check-label" for="exampleCheckbox1"></label>
+                                                </td>
+                                                <td class="image product-thumbnail pt-40"><img src="{{ asset('${value.product.product_thumbnail}') }}" alt="" /></td>
+                                                <td class="product-des product-name">
+                                                    <h6><a class="product-name mb-10" href="">${value.product.product_name}</a></h6>
+                                                    <div class="product-rate-cover">
+                                                        <div class="product-rate d-inline-block">
+                                                            <div class="product-rating" style="width: 90%"></div>
+                                                        </div>
+                                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                                    </div>
+                                                </td>
+                                                <td class="price" data-title="Price">
+                                                    ${ value.product.selling_price == null ? `<h3 class="text-brand">${value.product.selling_price}</h3>` :
+                                                        `<h3 class="text-brand">${value.product.selling_price}</h3>
+                                                        <h5 class="text-brand" style="text-decoration: line-through">${value.product.discount_price}</h5>`
+                                                        }
+                                                </td>
+                                                <td class="text-center detail-info" data-title="Stock">
+                                                    ${value.product.product_quantity > 0 ? `<span class="stock-status in-stock mb-0"> In Stock </span>` : `<span class="stock-status out-stock mb-0"> Out Stock </span>`}
+
+                                                </td>
+                                                <td class="text-right" data-title="Cart">
+                                                    ${value.product.product_quantity > 0 ? `<button class="btn btn-sm">Add to cart</button>` : `<button class="btn btn-sm btn-secondary">Contact Vendor</button>`}
+
+                                                </td>
+                                                <td class="action text-center" data-title="Remove">
+                                                    <a type="submit" class="text-body" id="${value.id}" onclick="wishlistRemove(this.id)" ><i class="fi-rs-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                        `;
+                            });
+
+                        $('#wishListData').html(wishlistData);
+                        $('#totalWishlistdata').text(response.total);
+
+
+                    }
+
+                });
+            }
+
+            function wishlistRemove(id){
+                $.ajax({
+                    type: "GET",
+                    dataType: 'json',
+                    url: "/wishlist/remove/"+id,
+                    success:function(data){
+                        getWishListData();
+
+                        if ($.isEmptyObject(data.error)) {
+
+                            Swal.fire({
+                                position: "top-end",
+                                type: 'success',
+                                icon: 'success',
+                                title: data.success,
+                            })
+                        }else{
+
+                            Toast.fire({
+                                showConfirmButton: false,
+                                type: 'error',
+                                icon: 'error',
+                                title: data.error,
+                            })
+                        }
+                        // End Message
+                    }
+                })
             }
         </script>
     </body>

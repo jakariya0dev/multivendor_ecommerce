@@ -52,7 +52,6 @@
                                 </div>
                                 <div class="clearfix product-price-cover">
                                     <div class="product-price primary-color float-left">
-
                                         @if($product->discount_price != null)
                                             <span class="current-price text-brand">${{ $product->selling_price-$product->discount_price }}</span>
                                             <span>
@@ -67,38 +66,39 @@
                                 </div>
                                     @if($product->product_size != null)
                                         <div class="attr-detail attr-size mb-30">
-                                            <strong class="mr-10">Size: </strong>
-                                            <ul class="list-filter size-filter font-small">
-                                                <input type="hidden" name="selected_size">
+                                            <strong class="mr-10" style="width:60px;">Size: </strong>
+                                            <select class="form-control unicase-form-control" id="detailsProductSize" name="product_size" required>
+                                                <option selected="" disabled="">--Choose Color--</option>
                                                 @foreach(explode(',', $product->product_size) as $key => $size)
-                                                    <li class="{{ $key == 1 ? 'active' : '' }}" ><a href="#">{{ $size }}</a></li>
+                                                    <option value="{{ $size }}">{{ $size }}</option>
                                                 @endforeach
-                                            </ul>
+                                            </select>
                                         </div>
                                     @endif
 
                                     @if($product->product_color != null)
                                         <div class="attr-detail attr-size mb-30">
-                                            <strong class="mr-10">Color: </strong>
-                                            <ul class="list-filter size-filter font-small">
-                                                <input type="hidden" name="selected_color">
+                                            <strong class="mr-10" style="width:60px;">Color: </strong>
+                                            <select class="form-control unicase-form-control" id="detailsProductColor" name="product_color" required>
+                                                <option selected="" disabled="">--Choose Color--</option>
                                                 @foreach(explode(',', $product->product_color) as $key => $color)
-                                                    <li class="{{ $key == 1 ? 'active' : '' }}" ><a href="#">{{ $color }}</a></li>
+                                                    <option value="{{ $color }}">{{ $color }}</option>
                                                 @endforeach
-                                            </ul>
+                                            </select>
+
                                         </div>
                                     @endif
 
                                 <div class="detail-extralink mb-50">
-
                                     <div class="detail-qty border radius">
                                         <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                        <input type="text" name="quantity" class="qty-val" value="1" min="1">
+                                        <input id="detailsSelectedQuantity" type="text" name="quantity" class="qty-val" value="1" min="1" required>
                                         <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                     </div>
                                     <div class="product-extra-link2">
-                                        <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
-                                        <a aria-label="Add To Wishlist" class="action-btn hover-up" href="#"><i class="fi-rs-heart"></i></a>
+                                        <input type="hidden" id="detailsProductId" value="{{ $product->id }}">
+                                        <button type="submit" class="button button-add-to-cart" onclick="addToCartFromDetailsPage()"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                        <a id="{{ $product->id }}" onclick="addToWishList(this.id)" aria-label="Add To Wishlist" class="action-btn hover-up"><i class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn hover-up" href="#"><i class="fi-rs-shuffle"></i></a>
                                     </div>
                                 </div>

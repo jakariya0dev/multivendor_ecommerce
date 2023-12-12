@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\WishListController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Support\Facades\Route;
 
@@ -81,6 +82,15 @@ Route::middleware(['auth', 'role:vendor'])->group(function (){
     Route::resource('vendor-product', VendorProductController::class);
 });
 
+
+Route::middleware(['auth', 'role:user'])->group(function (){
+
+    Route::view('/wishlist', 'frontend.wishlists.all_wishlist')->name('wishlist');
+    Route::get('/wishlist/all', [WishListController::class, 'getAllWishListData'])->name('wishlist.all');
+    Route::get('/wishlist/remove/{id}', [WishListController::class, 'removeFromWishList'])->name('wishlist.remove');
+
+});
+
 Route::get('/vendor/register', [VendorController::class, 'vendorRegister'])->name('vendor.register');
 Route::post('/vendor/register', [VendorController::class, 'newVendorStore'])->name('vendor.register');
 
@@ -98,15 +108,16 @@ Route::middleware(RedirectIfAuthenticated::class)->group(function (){
 
 // Frontend
 // Product
-Route::get('/product/{id}/{slug}', [IndexController::class, 'productDetails']);
+Route::get('/product/{id}/{slug}', [IndexController::class, 'productDetails'])->name('product.details');
 Route::get('/vendor/details/{id}', [IndexController::class, 'vendorDetails'])->name('vendor.details');
 Route::get('/vendor/list', [IndexController::class, 'allVendorList'])->name('vendor.list');
 Route::get('/category/{id}/{slug}', [IndexController::class, 'categoryWiseProduct']);
 Route::get('/subcategory/{id}/{slug}', [IndexController::class, 'subCategoryWiseProduct']);
 
 Route::get('/product/view/modal/{id}', [IndexController::class, 'productViewAjaxData']);
-Route::post('/product-add-to-cart/{id}', [CartController::class, 'productAddToCart']);
+Route::post('/add-to-cart/{id}', [CartController::class, 'productAddToCart']);
 Route::get('/all-cart-data', [CartController::class, 'getAllCartData']);
 Route::get('/remove-cart-item/{id}', [CartController::class, 'removeCartItem']);
+Route::post('/add-to-wishlist/{id}', [WishListController::class, 'addItemToWishList']);
 
 require __DIR__.'/auth.php';

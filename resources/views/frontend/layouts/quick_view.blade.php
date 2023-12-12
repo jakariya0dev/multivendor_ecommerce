@@ -26,6 +26,7 @@
                                 <strong class="mr-10" style="width:60px;">Size : </strong>
                                 <select class="form-control unicase-form-control" id="productSize" name="product_size">
                                     <option selected="" disabled="">--Choose Size--</option>
+                                    <!-- list Data Added via ajax -->
                                 </select>
                             </div>
 
@@ -33,6 +34,7 @@
                                 <strong class="mr-10" style="width:60px;">Color : </strong>
                                 <select class="form-control unicase-form-control" id="productColor" name="product_color">
                                     <option selected="" disabled="">--Choose Color--</option>
+                                    <!-- list Data Added via ajax -->
                                 </select>
                             </div>
 
