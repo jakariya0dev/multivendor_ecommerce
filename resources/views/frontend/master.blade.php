@@ -126,7 +126,38 @@
                 })
         }
 
-            function addToCart() {
+            function addToCart(id) {
+
+                $.ajax({
+                    type: "POST",
+                    dataType : 'json',
+                    url: "/add-to-cart/"+id,
+                    success:function(response){
+
+                        if($.isEmptyObject(response.error)){
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Added to cart",
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
+                            addDataToMiniCart();
+                        }
+                        else {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "error",
+                                title: "Failed to cart",
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
+                        }
+                    }
+                });
+            }
+
+            function addToCartFromQuickView() {
 
                 let id = $('#product_id').val();
                 let quantity = $('#selectedQuantity').val();
@@ -139,7 +170,7 @@
                     data:{
                         color: color, size:size, quantity: quantity,
                     },
-                    url: "/add-to-cart/"+id,
+                    url: "/add-to-cart-from-quick-view/"+id,
                     success:function(response){
 
                         $('#closeModal').click();
@@ -162,6 +193,47 @@
                                 showConfirmButton: false,
                                 timer: 2000
                             });
+                        }
+                    }
+                });
+
+            }
+
+            function addToCartFromDetailsPage() {
+
+                let id = $('#detailsProductId').val();
+                let quantity = $('#detailsSelectedQuantity').val();
+                let color = $('#detailsProductColor').val();
+                let size = $('#detailsProductSize').val();
+
+                $.ajax({
+                    type: "POST",
+                    dataType : 'json',
+                    data:{
+                        color: color, size:size, quantity: quantity,
+                    },
+                    url: "/add-to-cart/"+id,
+                    success:function(response){
+
+                        if($.isEmptyObject(response.error)){
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Added to cart",
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
+                        }
+                        else {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "error",
+                                title: "Failed to cart",
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
+
+                            addDataToMiniCart();
                         }
                     }
                 });
@@ -229,47 +301,6 @@
                         }
                     }
                 });
-            }
-
-            function addToCartFromDetailsPage() {
-
-                let id = $('#detailsProductId').val();
-                let quantity = $('#detailsSelectedQuantity').val();
-                let color = $('#detailsProductColor').val();
-                let size = $('#detailsProductSize').val();
-
-                $.ajax({
-                    type: "POST",
-                    dataType : 'json',
-                    data:{
-                        color: color, size:size, quantity: quantity,
-                    },
-                    url: "/add-to-cart/"+id,
-                    success:function(response){
-
-                        if($.isEmptyObject(response.error)){
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: "Added to cart",
-                                showConfirmButton: false,
-                                timer: 2000
-                            });
-                        }
-                        else {
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "error",
-                                title: "Failed to cart",
-                                showConfirmButton: false,
-                                timer: 2000
-                            });
-
-                            addDataToMiniCart();
-                        }
-                    }
-                });
-
             }
 
             function addToWishList(id) {

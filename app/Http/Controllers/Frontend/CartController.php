@@ -17,6 +17,20 @@ class CartController extends Controller
         Cart::add(
             $product->id,
             $product->product_name,
+            1, $product->discount_price == null ? $product->selling_price : $product->discount_price, 0,
+            ['size' => '', 'color' => '', 'image' => $product->product_thumbnail]
+        );
+        return response()->json(['message'=>'success']);
+    }
+
+    public function addToCartFromQuickView(Request $request, $id)
+    {
+
+        $product = Product::findOrFail($id);
+
+        Cart::add(
+            $product->id,
+            $product->product_name,
             $request->quantity, $product->discount_price == null ? $product->selling_price : $product->discount_price, 0,
             ['size' => $request->size, 'color' => $request->color, 'image' => $product->product_thumbnail]
         );

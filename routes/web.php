@@ -116,6 +116,7 @@ Route::get('/subcategory/{id}/{slug}', [IndexController::class, 'subCategoryWise
 
 Route::get('/product/view/modal/{id}', [IndexController::class, 'productViewAjaxData']);
 Route::post('/add-to-cart/{id}', [CartController::class, 'productAddToCart']);
+Route::post('/add-to-cart-from-quick-view/{id}', [CartController::class, 'addToCartFromQuickView']);
 Route::get('/all-cart-data', [CartController::class, 'getAllCartData']);
 Route::get('/remove-cart-item/{id}', [CartController::class, 'removeCartItem']);
 Route::post('/add-to-wishlist/{id}', [WishListController::class, 'addItemToWishList']);

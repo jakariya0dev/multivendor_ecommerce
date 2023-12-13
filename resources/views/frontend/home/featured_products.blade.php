@@ -34,7 +34,7 @@
                                             </div>
                                             <div class="product-action-1">
                                                 <a id="{{ $product->id }}" onclick="quickView(this.id)" aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i class="fi-rs-eye"></i></a>
-                                                <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="#"><i class="fi-rs-heart"></i></a>
+                                                <a aria-label="Add To Wishlist" class="action-btn small hover-up" id="{{ $product->id }}" onclick="addToWishList(this.id)"><i class="fi-rs-heart"></i></a>
                                                 <a aria-label="Compare" class="action-btn small hover-up" href="#"><i class="fi-rs-shuffle"></i></a>
                                             </div>
                                             <div class="product-badges product-badges-position product-badges-mrg">
@@ -67,7 +67,7 @@
                                                 </div>
                                                 <span class="font-xs text-heading"> Sold: {{ $product->product_quantity }}</span>
                                             </div>
-                                            <a href="#" class="btn w-100 hover-up"><i class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+                                            <a type="submit" onclick="addToCart(this.id)" id="{{ $product->id }} class="btn w-100 hover-up"><i class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
                                         </div>
                                     </div>
                                 @endforeach
