@@ -8,6 +8,7 @@
 <section class="section-padding mb-30">
     <div class="container">
         <div class="row">
+
             <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 wow animate__animated animate__fadeInUp" data-wow-delay="0">
                 <h4 class="section-title style-1 mb-30 animated animated"> Hot Deals </h4>
                 <div class="product-list-small animated animated">
@@ -33,8 +34,10 @@
                                         <span>${{ $hot_deal->selling_price - $hot_deal->discount_price }}</span>
                                         <span class="old-price">${{ $hot_deal->selling_price }}</span>
                                     @endif
-
-                                    <div style="margin-left: auto; background-color: rgba(250, 0, 0, 0.1); padding: 5px 10px; border-radius: 5px;" class="add-cart">
+                                        <div style="margin-left: auto; display: flex; justify-content: center; align-items: center; margin-right: 10px">
+                                            <a id="{{ $hot_deal->id }}" onclick="addToWishList(this.id)" aria-label="Add To Wishlist" class="action-btn hover-up"><i class="fi-rs-heart"></i></a>
+                                        </div>
+                                    <div style="background-color: rgba(250, 0, 0, 0.1); padding: 5px 10px; border-radius: 5px;" class="add-cart">
                                         <a style="font-size: 16px" class="add" type="submit" onclick="addToCart(this.id)" id="{{ $hot_deal->id }}"><i class="fi-rs-shopping-cart mr-5"></i>Add</a>
                                     </div>
                                 </div>
@@ -69,8 +72,10 @@
                                         <span>${{ $special_offer->selling_price - $special_offer->discount_price }}</span>
                                         <span class="old-price">${{ $special_offer->selling_price }}</span>
                                     @endif
-
-                                    <div style="margin-left: auto; background-color: rgba(250, 0, 0, 0.1); padding: 5px 10px; border-radius: 5px;" class="add-cart">
+                                        <div style="margin-left: auto; display: flex; justify-content: center; align-items: center; margin-right: 10px">
+                                            <a id="{{ $special_offer->id }}" onclick="addToWishList(this.id)" aria-label="Add To Wishlist" class="action-btn hover-up"><i class="fi-rs-heart"></i></a>
+                                        </div>
+                                    <div style="background-color: rgba(250, 0, 0, 0.1); padding: 5px 10px; border-radius: 5px;" class="add-cart">
                                         <a style="font-size: 16px" class="add" type="submit" onclick="addToCart(this.id)" id="{{ $special_offer->id }}"><i class="fi-rs-shopping-cart mr-5"></i>Add</a>
                                     </div>
                                 </div>
@@ -105,8 +110,10 @@
                                         <span>${{ $featured_item->selling_price - $featured_item->discount_price }}</span>
                                         <span class="old-price">${{ $featured_item->selling_price }}</span>
                                     @endif
-
-                                    <div style="margin-left: auto; background-color: rgba(250, 0, 0, 0.1); padding: 5px 10px; border-radius: 5px;" class="add-cart">
+                                        <div style="margin-left: auto; display: flex; justify-content: center; align-items: center; margin-right: 10px">
+                                            <a id="{{ $featured_item->id }}" onclick="addToWishList(this.id)" aria-label="Add To Wishlist" class="action-btn hover-up"><i class="fi-rs-heart"></i></a>
+                                        </div>
+                                    <div style="background-color: rgba(250, 0, 0, 0.1); padding: 5px 10px; border-radius: 5px;" class="add-cart">
                                         <a style="font-size: 16px" class="add" type="submit" onclick="addToCart(this.id)" id="{{ $featured_item->id }}"><i class="fi-rs-shopping-cart mr-5"></i>Add</a>
                                     </div>
                                 </div>
@@ -142,7 +149,10 @@
                                         <span class="old-price">${{ $special_deal->selling_price }}</span>
                                     @endif
 
-                                    <div style="margin-left: auto; background-color: rgba(250, 0, 0, 0.1); padding: 5px 10px; border-radius: 5px;" class="add-cart">
+                                    <div style="margin-left: auto; display: flex; justify-content: center; align-items: center; margin-right: 10px">
+                                        <a id="{{ $special_deal->id }}" onclick="addToWishList(this.id)" aria-label="Add To Wishlist" class="action-btn hover-up"><i class="fi-rs-heart"></i></a>
+                                    </div>
+                                    <div style="background-color: rgba(250, 0, 0, 0.1); padding: 5px 10px; border-radius: 5px;" class="add-cart">
                                         <a style="font-size: 16px" class="add" type="submit" onclick="addToCart(this.id)" id="{{ $special_deal->id }}"><i class="fi-rs-shopping-cart mr-5"></i>Add</a>
                                     </div>
                                 </div>
