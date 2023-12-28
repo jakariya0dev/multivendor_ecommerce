@@ -88,6 +88,9 @@ Route::middleware(['auth', 'role:user'])->group(function (){
     Route::view('/wishlist', 'frontend.wishlists.all_wishlist')->name('wishlist');
     Route::get('/wishlist/all', [WishListController::class, 'getAllWishListData'])->name('wishlist.all');
     Route::get('/wishlist/remove/{id}', [WishListController::class, 'removeFromWishList'])->name('wishlist.remove');
+    Route::get('/cart', [CartController::class, 'cartPage'])->name('cart.index');
+    Route::get('/cart/increment/{id}', [CartController::class, 'cartQuantityIncrement'])->name('cart.increment');
+    Route::get('/cart/decrement/{id}', [CartController::class, 'cartQuantityDecrement'])->name('cart.decrement');
 
 });
 

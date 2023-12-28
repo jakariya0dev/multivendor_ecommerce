@@ -37,7 +37,8 @@ class CartController extends Controller
         return response()->json(['message'=>'success']);
     }
 
-    public function getAllCartData(){
+    public function getAllCartData()
+    {
 
         return response()->json([
             'carts' => Cart::content(),
@@ -46,8 +47,31 @@ class CartController extends Controller
         ]);
     }
 
-    public function removeCartItem($rowId){
+    public function removeCartItem($rowId)
+    {
         Cart::remove($rowId);
         return response()->json(['message' =>'success']);
+    }
+
+    public function cartPage()
+    {
+        return view('cart.index');
+    }
+
+    public function cartQuantityIncrement($row_id)
+    {
+        $row = Cart::get($row_id);
+        Cart::update($row_id, $row->qty+1);
+        return response()->json(['message' => 'Successfully Incremented']);
+    }
+    public function cartQuantityDecrement($row_id)
+    {
+        $row = Cart::get($row_id);
+
+        if ($row->qty > 1){
+            Cart::update($row_id, $row->qty-1);
+        }
+
+        return response()->json(['message' => 'Successfully Decremented']);
     }
 }
