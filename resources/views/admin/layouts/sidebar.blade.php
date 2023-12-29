@@ -13,44 +13,44 @@
     <!--navigation-->
     <ul class="metismenu" id="menu">
         <li>
-            <a href="javascript:;" class="has-arrow">
+            <a href="#" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-home-circle'></i>
                 </div>
                 <div class="menu-title">Dashboard</div>
             </a>
             <ul>
-                <li> <a href="index.html"><i class="bx bx-right-arrow-alt"></i>Default</a>
+                <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Default</a>
                 </li>
-                <li> <a href="dashboard-eCommerce.html"><i class="bx bx-right-arrow-alt"></i>eCommerce</a>
+                <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>eCommerce</a>
                 </li>
-                <li> <a href="dashboard-analytics.html"><i class="bx bx-right-arrow-alt"></i>Analytics</a>
+                <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Analytics</a>
                 </li>
-                <li> <a href="dashboard-digital-marketing.html"><i class="bx bx-right-arrow-alt"></i>Digital Marketing</a>
+                <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Digital Marketing</a>
                 </li>
-                <li> <a href="dashboard-human-resources.html"><i class="bx bx-right-arrow-alt"></i>Human Resources</a>
+                <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Human Resources</a>
                 </li>
             </ul>
         </li>
         <li>
-            <a href="javascript:;" class="has-arrow">
+            <a href="" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
                 </div>
                 <div class="menu-title">Application</div>
             </a>
             <ul>
-                <li> <a href="app-emailbox.html"><i class="bx bx-right-arrow-alt"></i>Email</a>
+                <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Email</a>
                 </li>
-                <li> <a href="app-chat-box.html"><i class="bx bx-right-arrow-alt"></i>Chat Box</a>
+                <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Chat Box</a>
                 </li>
-                <li> <a href="app-file-manager.html"><i class="bx bx-right-arrow-alt"></i>File Manager</a>
+                <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>File Manager</a>
                 </li>
-                <li> <a href="app-contact-list.html"><i class="bx bx-right-arrow-alt"></i>Contatcs</a>
+                <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Contacts</a>
                 </li>
-                <li> <a href="app-to-do.html"><i class="bx bx-right-arrow-alt"></i>Todo List</a>
+                <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Todo List</a>
                 </li>
-                <li> <a href="app-invoice.html"><i class="bx bx-right-arrow-alt"></i>Invoice</a>
+                <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Invoice</a>
                 </li>
-                <li> <a href="app-fullcalender.html"><i class="bx bx-right-arrow-alt"></i>Calendar</a>
+                <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Calendar</a>
                 </li>
             </ul>
         </li>
@@ -126,7 +126,7 @@
         </li>
 
         <li>
-            <a href="javascript:" class="has-arrow">
+            <a href="#" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
                 </div>
                 <div class="menu-title">Banner Manage</div>
@@ -135,6 +135,21 @@
                 <li> <a href="{{ route('banner.index') }}"><i class="bx bx-right-arrow-alt"></i>All Banner</a>
                 </li>
                 <li> <a href="{{ route('banner.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Banner</a>
+                </li>
+
+            </ul>
+        </li>
+
+        <li>
+            <a href="#" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Coupon System</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('coupon.index') }}"><i class="bx bx-right-arrow-alt"></i>All Coupon</a>
+                </li>
+                <li> <a href="{{ route('coupon.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Coupon</a>
                 </li>
 
             </ul>
