@@ -23,6 +23,15 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
+                                    @if($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach($errors->all() as $error)
+                                                    <li> {{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
                                     <form action="{{ route('coupon.store') }}" method="post">
                                         @csrf
                                         <div class="row mb-3">
@@ -38,7 +47,7 @@
                                                 <h6 class="mb-0">Coupon Discount(%)</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input name="coupon_discount" type="number" class="form-control" required/>
+                                                <input name="coupon_discount" type="number" class="form-control" max="100" required/>
                                             </div>
                                         </div>
                                         <div class="row mb-3">

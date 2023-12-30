@@ -93,6 +93,8 @@ Route::middleware(['auth', 'role:user'])->group(function (){
     Route::get('/cart', [CartController::class, 'cartPage'])->name('cart.index');
     Route::get('/cart/increment/{id}', [CartController::class, 'cartQuantityIncrement'])->name('cart.increment');
     Route::get('/cart/decrement/{id}', [CartController::class, 'cartQuantityDecrement'])->name('cart.decrement');
+    Route::post('/cart/apply/coupon', [CartController::class, 'applyCoupon'])->name('apply.coupon');
+    Route::get('/cart/remove/coupon', [CartController::class, 'removeCoupon'])->name('remove.coupon');
 
 });
 

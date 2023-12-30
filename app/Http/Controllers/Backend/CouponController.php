@@ -31,6 +31,11 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'coupon_name' => 'required|unique:coupons',
+            'coupon_discount' => 'required|max:100',
+            'expiry_date' => 'required',
+        ]);
         Coupon::insert([
             'coupon_name' => strtoupper($request->input('coupon_name')),
             'coupon_discount' => $request->input('coupon_discount'),
